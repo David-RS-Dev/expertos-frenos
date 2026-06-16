@@ -663,36 +663,43 @@ button {
 }
 
 /* Simulación visual o plano de la matrícula oficial */
-.matricula-blueprint {
-    background-color: #ffffff;
-    border: 2px dashed var(--secondary-color);
-    border-radius: 6px;
-    padding: 10px;
-    font-family: monospace;
-    font-size: 11px;
-    background-color: #fcfcf6; /* Tono papel antiguo/oficial */
-    margin-bottom: 14px;
-}
-
-.blueprint-header {
-    text-align: center;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 4px;
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: var(--text-muted);
-}
-
-.blueprint-row {
-    padding: 3px 0;
-    color: #4a5568;
-}
-
 .blueprint-row.highlight-field {
     background-color: #fff3cd; /* Resaltado amarillo tipo marcador */
     border-left: 3px solid #f6ad55;
     padding-left: 4px;
     margin: 2px 0;
+}
+
+/* Contenedor y comportamiento adaptable para la imagen de la matrícula */
+.matricula-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f7fafc;
+}
+
+.matricula-guia-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Indica visualmente que la imagen es interactiva */
+.matricula-guia-img {
+    cursor: zoom-in; /* Muestra una lupa al pasar el dedo/ratón */
+    transition: transform 0.3s ease, cursor 0.3s ease; /* Animación suave */
+}
+
+/* Estado de la imagen cuando el zoom está activado por JS */
+.matricula-guia-img.zoomed {
+    cursor: zoom-out; /* Muestra una lupa con signo menos */
+    /* La transformación de escala se aplicará dinámicamente con JS */
 }
 
 .helper-explanation ul {
