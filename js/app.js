@@ -301,23 +301,16 @@ function finalizarCotizacion(nivelElegido) {
 }
 
 /* ==========================================================================
-   9. INTERACTIVIDAD DE LA GUÍA DE MATRÍCULA (ZOOM)
+   9. INTERACTIVIDAD DE LA GUÍA DE MATRÍCULA (ZOOM OPTIMIZADO)
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
     const imagenMatricula = document.getElementById('img-guia-matricula');
 
     if (imagenMatricula) {
         imagenMatricula.addEventListener('click', function() {
-            // Alterna la clase 'zoomed' en la imagen al hacer clic
+            // Alterna la clase 'zoomed' de forma nativa.
+            // El archivo CSS se encarga de aplicar las dimensiones y habilitar las barras de scroll.
             this.classList.toggle('zoomed');
-
-            if (this.classList.contains('zoomed')) {
-                // Aplica un zoom del 250% (o el factor que prefieras)
-                this.style.transform = 'scale(2.5)';
-            } else {
-                // Restaura el tamaño original al 100%
-                this.style.transform = 'scale(1)';
-            }
         });
     }
 });

@@ -602,7 +602,7 @@ button {
 }
 
 /* ==========================================================================
-   8. COMPONENTE MODAL (GUÍA DE MATRÍCULA DE ECUADOR)
+   8. COMPONENTE MODAL (GUÍA DE MATRÍCULA DE ECUADOR) - OPTIMIZADO
    ========================================================================== */
 .modal-backdrop {
     position: fixed;
@@ -662,44 +662,44 @@ button {
     margin-bottom: 14px;
 }
 
-/* Simulación visual o plano de la matrícula oficial */
+/* Estilo para las etiquetas de los campos guía en bloque horizontal */
 .blueprint-row.highlight-field {
     background-color: #fff3cd; /* Resaltado amarillo tipo marcador */
     border-left: 3px solid #f6ad55;
-    padding-left: 4px;
-    margin: 2px 0;
+    padding: 4px 8px;
+    font-size: 11px;
+    border-radius: 4px;
+    display: inline-block; /* Permite que se alineen una al lado de la otra si caben */
 }
 
-/* Contenedor y comportamiento adaptable para la imagen de la matrícula */
+/* Contenedor adaptado para permitir desplazamiento táctil al ampliar */
 .matricula-image-container {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 16px;
+    max-height: 220px; /* Evita que empuje el botón del modal fuera de la pantalla */
+    margin: 12px 0;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    overflow: hidden;
     background-color: #f7fafc;
+    overflow: auto; /* ACTIVA EL SCROLL: Permite arrastrar con el dedo al ampliar */
+    -webkit-overflow-scrolling: touch; /* Desplazamiento fluido táctil en iOS Safari */
 }
 
+/* Imagen base fluida */
 .matricula-guia-img {
     width: 100%;
     height: auto;
     display: block;
     object-fit: contain;
+    cursor: zoom-in; /* Lupa con signo + */
+    transform-origin: top left; /* Eje en la esquina para evitar cortes extraños */
+    transition: transform 0.3s ease, width 0.3s ease, cursor 0.3s ease;
 }
 
-/* Indica visualmente que la imagen es interactiva */
-.matricula-guia-img {
-    cursor: zoom-in; /* Muestra una lupa al pasar el dedo/ratón */
-    transition: transform 0.3s ease, cursor 0.3s ease; /* Animación suave */
-}
-
-/* Estado de la imagen cuando el zoom está activado por JS */
+/* Estado ampliado: forzamos a que crezca en ancho para que el contenedor active el scroll */
 .matricula-guia-img.zoomed {
-    cursor: zoom-out; /* Muestra una lupa con signo menos */
-    /* La transformación de escala se aplicará dinámicamente con JS */
+    width: 220%; /* Crece un 220% para ser totalmente legible en el celular */
+    max-width: none;
+    cursor: zoom-out; /* Lupa con signo - */
 }
 
 .helper-explanation ul {
