@@ -536,8 +536,40 @@ button {
     color: #ffffff;
     box-shadow: 0 4px 10px rgba(49, 151, 149, 0.3);
 }
+
 .btn-featured:active {
     background-color: #234e52;
+}
+
+.btn-premium {
+    background-color: var(--premium-color); /* #b7791f */
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(183, 121, 31, 0.25);
+}
+.btn-premium:active {
+    background-color: #975a16; /* Tono más oscuro al presionar */
+    transform: scale(0.98);
+}
+
+.btn-urbano {
+    background-color: #ffffff;
+    color: var(--urbano-color); /* #718096 */
+    border: 2px solid var(--urbano-color);
+    box-shadow: none;
+}
+.btn-urbano:active {
+    background-color: #f7fafc;
+    transform: scale(0.98);
+}
+
+.tier-card.premium-tier-card {
+    border-color: var(--premium-color);   /* Borde dorado */
+    background-color: #fffaf0;            
+    box-shadow: 0 4px 12px rgba(183, 121, 31, 0.1); 
+}
+
+.tier-card.premium-tier-card h4 {
+    color: var(--premium-color);          /* Título combinado */
 }
 
 /* MANEJO DE LA RESTRICCIÓN PREMIUM (OCULTADO/BLOQUEO DE URBANO) */

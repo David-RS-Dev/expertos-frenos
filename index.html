@@ -182,21 +182,6 @@
             </div>
 
             <div id="tier-pricing-container" class="pricing-tiers-grid">
-                
-                <div class="tier-card" id="tier-URBANO">
-                    <div class="tier-badge urbano-badge">Económico</div>
-                    <h4>Calidad Urbana</h4>
-                    <p class="tier-desc">Ideal para trayectos cortos dentro de Quito sin exigencias extremas.</p>
-                    <div class="tier-price">
-                        <span class="currency">$</span>
-                        <span class="amount" id="price-urbano-val">00</span>
-                        <span class="tax-tag">+ IVA</span>
-                    </div>
-                    <div class="restriction-msg hidden" id="restriction-urbano-msg">
-                        <i class="fa-solid fa-triangle-exclamation"></i> No recomendado para este nivel de prestaciones.
-                    </div>
-                    <button class="btn-select-tier" onclick="finalizarCotizacion('Urbano')">Seleccionar Urbana</button>
-                </div>
 
                 <div class="tier-card featured-tier" id="tier-ESTANDAR">
                     <div class="tier-badge estandar-badge"><i class="fa-solid fa-star"></i> Más Vendido</div>
@@ -210,7 +195,7 @@
                     <button class="btn-select-tier btn-featured" onclick="finalizarCotizacion('Estándar')">Elegir Estándar (Recomendado)</button>
                 </div>
 
-                <div class="tier-card" id="tier-PREMIUM">
+                <div class="tier-card premium-tier-card" id="tier-PREMIUM">
                     <div class="tier-badge premium-badge">Alta Gama</div>
                     <h4>Calidad Premium</h4>
                     <p class="tier-desc">Máximo rendimiento, compuesto aleación libre de ruidos y frenado de emergencia superior.</p>
@@ -219,7 +204,22 @@
                         <span class="amount" id="price-premium-val">00</span>
                         <span class="tax-tag">+ IVA</span>
                     </div>
-                    <button class="btn-select-tier" onclick="finalizarCotizacion('Premium')">Seleccionar Premium</button>
+                    <button class="btn-select-tier btn-premium" onclick="finalizarCotizacion('Premium')">Seleccionar Premium</button>
+                </div>
+
+                <div class="tier-card" id="tier-URBANO">
+                    <div class="tier-badge urbano-badge">Económico</div>
+                    <h4>Calidad Urbana</h4>
+                    <p class="tier-desc">Ideal para trayectos cortos dentro de Quito sin exigencias extremas.</p>
+                    <div class="tier-price">
+                        <span class="currency">$</span>
+                        <span class="amount" id="price-urbano-val">00</span>
+                        <span class="tax-tag">+ IVA</span>
+                    </div>
+                    <div class="restriction-msg hidden" id="restriction-urbano-msg">
+                        <i class="fa-solid fa-triangle-exclamation"></i> No recomendado para este nivel de prestaciones.
+                    </div>
+                    <button class="btn-select-tier btn-urbano" onclick="finalizarCotizacion('Urbano')">Seleccionar Urbana</button>
                 </div>
 
             </div>
