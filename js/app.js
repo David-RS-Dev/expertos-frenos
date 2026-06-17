@@ -193,7 +193,7 @@ function seleccionarServicio(servicioClave) {
     
     // Actualizamos el resumen en la barra superior interactiva
     const etiquetasServicio = {
-        "calidad_pastillas": "Solo Pastillas",
+        "calidad_pastillas": "Pastillas Nuevas",
         "servicio_integral": "S. Integral",
         "mano_de_obra": "Mano de Obra"
     };
