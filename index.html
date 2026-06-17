@@ -158,19 +158,27 @@
         </section>
 
 
-        <section id="step-3" class="wizard-step">
-            <div class="step-instruction">
-                <h3 id="prices-subtitle">Precios sugeridos en base a tu tipo de vehículo.</h3>
+        <section id="step-3" class="wizard-step">            
+            <div id="service-context-card" class="service-context-card">
+                <div class="context-row">
+                    <!-- Check centrado verticalmente -->
+                    <span class="context-check-icon">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+                    
+                    <!-- Contenido de texto replicado -->
+                    <div class="context-content">
+                        <h4 id="context-service-title">Título del servicio</h4>
+                        <p class="context-free-install">Incluye Instalación GRATIS</p>
+                        <p id="context-service-desc" class="context-description">
+                            Descripción detallada del servicio...
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <div id="service-context-card" class="service-context-card">
-                <div class="context-header">
-                    <span class="context-icon"><i class="fa-solid fa-circle-info"></i></span>
-                    <strong id="context-service-name">Servicio seleccionado</strong>
-                </div>
-                <p id="context-service-desc" class="context-description">
-                    Descripción del servicio aparecerá aquí...
-                </p>
+            <div class="step-instruction">
+                <h3 id="prices-subtitle">Precios sugeridos en base a tu tipo de vehículo.</h3>
             </div>
 
             <div id="tier-pricing-container" class="pricing-tiers-grid">

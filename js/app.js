@@ -208,43 +208,53 @@ function seleccionarServicio(servicioClave) {
 }
 
 function calcularYDesplegarPrecios() {
-    const tipo = cotizacionCliente.tipoVehiculo;
+   const tipo = cotizacionCliente.tipoVehiculo;
     const servicio = cotizacionCliente.servicio;
     const tierContainer = document.getElementById("tier-pricing-container");
     const dualContainer = document.getElementById("dual-pricing-container");
     
-    // 🟢 ACTUALIZACIÓN DEL TÍTULO Y LA TARJETA DE CONTEXTO
-    const subtitulo = document.getElementById("prices-subtitle");
-    const contextName = document.getElementById("context-service-name");
+    // 🟢 ACTUALIZACIÓN DE LA TARJETA DE CONTEXTO RÉPLICA
+    const contextTitle = document.getElementById("context-service-title");
     const contextDesc = document.getElementById("context-service-desc");
 
     // 1. Armamos el nombre del vehículo
     const nombreVehiculo = cotizacionCliente.modelo ? 
         `${cotizacionCliente.marca} ${cotizacionCliente.modelo}` : 
         cotizacionCliente.marca; 
-        
-    subtitulo.textContent = `Precios para ${nombreVehiculo}`;
+    document.getElementById("prices-subtitle").textContent = `Precios para ${nombreVehiculo}`;
 
-    // 2. Mapeamos el servicio a su nombre comercial Y descripción completa
+    // 2. Mapeamos el servicio con TÍTULO, SUBTÍTULO y DESCRIPCIÓN (igual que Paso 2)
     const serviciosInfo = {
         "calidad_pastillas": {
-            nombre: "Pastillas Nuevas",
-            descripcion: "Incluye Instalación GRATIS. Instalación de pastillas de freno nuevas en el eje delantero o posterior."
+            titulo: "Pastillas Nuevas",
+            freeInstall: "Incluye Instalación GRATIS",
+            descripcion: "Instalación de pastillas de freno nuevas en el eje delantero o posterior."
         },
         "servicio_integral": {
-            nombre: "Servicio Integral",
-            descripcion: "Incluye Instalación GRATIS. Pastillas nuevas + Rectificación técnica del par de discos delanteros para evitar vibraciones."
+            titulo: "Servicio Integral (Recomendado)",
+            freeInstall: "Incluye Instalación GRATIS",
+            descripcion: "Pastillas nuevas + Rectificación técnica del par de discos delanteros para evitar vibraciones."
         },
         "mano_de_obra": {
-            nombre: "Solo Mano de Obra",
+            titulo: "Solo Mano de Obra",
+            freeInstall: "", // No tiene este subtítulo
             descripcion: "Si ya compraste tus propias pastillas o discos y buscas únicamente instalación calificada."
         }
     };
 
     const servicioActual = serviciosInfo[servicio];
     if (servicioActual) {
-        contextName.textContent = servicioActual.nombre;
+        contextTitle.textContent = servicioActual.titulo;
         contextDesc.textContent = servicioActual.descripcion;
+        
+        // Manejo especial para el subtítulo "Incluye Instalación GRATIS"
+        const freeInstallEl = document.querySelector(".context-free-install");
+        if (servicioActual.freeInstall) {
+            freeInstallEl.textContent = servicioActual.freeInstall;
+            freeInstallEl.style.display = "block";
+        } else {
+            freeInstallEl.style.display = "none";
+        }
     }
 
     // CASO A: SERVICIO DE MANO DE OBRA (Estructura de Tarjetas Duales)
