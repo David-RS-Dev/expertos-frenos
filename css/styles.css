@@ -787,15 +787,16 @@ button {
 11. BARRA DE ESTADO INTERACTIVA (COMPACTA / SIN ETIQUETAS)
 ========================================================================== */
 .barra-estado {
-    margin-top: 6px;
-    padding: 4px 8px;
+    /* 🟢 CLAVE: Le damos margen lateral para que no quede pegada a los bordes */
+    margin: 10px 16px 0 16px; 
+    padding: 4px 10px;
     background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
     border-radius: 10px;
     border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2px;
+    gap: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     animation: fadeIn 0.3s ease-out;
 }
@@ -815,7 +816,7 @@ button {
     cursor: pointer;
     flex: 1;
     transition: var(--transition);
-    padding: 4px 6px; 
+    padding: 3px 6px; 
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.7); /* Fondo tipo pastilla/chip */
     border: 1px solid rgba(255, 255, 255, 0.9);
