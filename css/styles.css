@@ -662,14 +662,40 @@ button {
     margin-bottom: 14px;
 }
 
+/* Contenedor general de las cápsulas informativas */
+.campos-guia-lista {
+    margin-bottom: 12px; 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px;
+}
+
 /* Estilo para las etiquetas de los campos guía en bloque horizontal */
 .blueprint-row.highlight-field {
-    background-color: #fff3cd; /* Resaltado amarillo tipo marcador */
-    border-left: 3px solid #f6ad55;
-    padding: 4px 8px;
+    background-color: #ebf5ea; /* Resaltado amarillo tipo marcador */
+    border-left: 3px solid #8d2f2d;
+    padding: 6px 10px;
     font-size: 11px;
     border-radius: 4px;
-    display: inline-block; /* Permite que se alineen una al lado de la otra si caben */
+    display: inline-flex; /* Cambiado a inline-flex para alinear el número perfectamente con el texto */
+    align-items: center;
+    gap: 6px; /* Separación interna entre el círculo numérico y el texto */
+    font-weight: bold;
+}
+
+/* El círculo indicador con los colores de la matrícula de Ecuador (Fondo Verde, Número Rojo) */
+.num-indicador {
+    background-color: #00ff18; /* Verde esmeralda */
+    color: #8d2f2d;            /* Rojo brillante */
+    font-weight: 900;          /* Texto grueso */
+    font-size: 11px;
+    width: 18px;               /* Ancho del círculo */
+    height: 18px;              /* Alto del círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;        
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 /* Contenedor adaptado para permitir desplazamiento táctil al ampliar */
