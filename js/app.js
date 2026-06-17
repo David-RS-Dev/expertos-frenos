@@ -299,3 +299,18 @@ function cerrarModalMatricula() {
 function finalizarCotizacion(nivelElegido) {
     alert(`¡Excelente elección! Has seleccionado la alternativa: ${nivelElegido}.\n\nPresenta esta pantalla en la recepción del taller para validar tu cotización.`);
 }
+
+/* ==========================================================================
+   9. INTERACTIVIDAD DE LA GUÍA DE MATRÍCULA (ZOOM OPTIMIZADO)
+   ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+    const imagenMatricula = document.getElementById('img-guia-matricula');
+
+    if (imagenMatricula) {
+        imagenMatricula.addEventListener('click', function() {
+            // Alterna la clase 'zoomed' de forma nativa.
+            // El archivo CSS se encarga de aplicar las dimensiones y habilitar las barras de scroll.
+            this.classList.toggle('zoomed');
+        });
+    }
+});

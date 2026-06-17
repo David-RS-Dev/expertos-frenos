@@ -39,7 +39,7 @@
             </div>
 
             <div class="search-card">
-                <h4><i class="fa-solid fa-magnifying-glass"></i> Búsqueda por Marca y Modelo</h4>
+                <h4><i class="fa-solid fa-magnifying-glass"></i> Buscador por Marca y Modelo</h4>
                 <div class="input-group">
                     <input type="text" id="search-input" placeholder="Ej: Chevrolet Spark, Kia Rio..." autocomplete="off">
                     <button id="clear-search-btn" class="hidden"><i class="fa-solid fa-xmark"></i></button>
@@ -218,40 +218,39 @@
             </footer>
         </section>
 
-    </div> <div id="matricula-modal" class="modal-backdrop hidden">
+    </div> 
+    <div id="matricula-modal" class="modal-backdrop hidden">
         <div class="modal-content">
             <div class="modal-header">
                 <h4>
-                    <i class="fa-solid fa-id-card">
-                    </i>
+                    <i class="fa-solid fa-id-card"></i>
                     Busca los siguientes campos en tu matrícula
                 </h4>
                 <button type="button" class="close-modal-btn" onclick="cerrarModalMatricula()">&times;</button>
             </div>
             <div class="modal-body">
-                                
-                <div class="matricula-blueprint">
-                    <div class="blueprint-header">REPÚBLICA DE ECUADOR - MATRÍCULA VEHICULAR</div>
-                    <div class="blueprint-row highlight-field">
-                        <span><strong>MARCA:</strong> CHEVROLET / TOYOTA / KIA</span>
-                    </div>
-                    <div class="blueprint-row highlight-field">
-                        <span><strong>MODELO:</strong> SPARK / HILUX / RIO</span>
-                    </div>
-                    <div class="blueprint-row highlight-field">
-                        <span><strong>CLASE:</strong> AUTOMOVIL / JEEP / CAMIONETA</span>
-                    </div>
-                    <div class="blueprint-row highlight-field">
-                        <span><strong>AÑO DE MODELO:</strong> 2020 / 2023</span>
-                    </div>
+            
+                <div class="campos-guia-lista">
+                    <span class="blueprint-row highlight-field">
+                        <span class="num-indicador">1</span> MARCA
+                    </span>
+                    <span class="blueprint-row highlight-field">
+                        <span class="num-indicador">2</span> MODELO
+                    </span>
+                    <span class="blueprint-row highlight-field">
+                        <span class="num-indicador">3</span> AÑO DE MODELO
+                    </span>
+                </div>
+
+                <div class="matricula-image-container">
+                    <img src="matricula-vehiculo.png" alt="Guía de Matrícula Vehicular Ecuador" class="matricula-guia-img" id="img-guia-matricula">
                 </div>
 
                 <div class="helper-explanation">
                     <ul>
                         <li>
-                            <i class="fa-solid fa-check text-success">
-                            </i>
-                            Ingrésalos en el buscador de marca y modelo para guiar el cotizador
+                            <i class="fa-solid fa-check text-success"></i>
+                            <strong>Digita los campos (1 y 2) de tu matrícula en el Buscador por Marca y Modelo</strong>
                         </li>
                     </ul>
                 </div>

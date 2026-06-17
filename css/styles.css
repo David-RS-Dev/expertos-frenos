@@ -602,7 +602,7 @@ button {
 }
 
 /* ==========================================================================
-   8. COMPONENTE MODAL (GUÍA DE MATRÍCULA DE ECUADOR)
+   8. COMPONENTE MODAL (GUÍA DE MATRÍCULA DE ECUADOR) - OPTIMIZADO
    ========================================================================== */
 .modal-backdrop {
     position: fixed;
@@ -662,37 +662,70 @@ button {
     margin-bottom: 14px;
 }
 
-/* Simulación visual o plano de la matrícula oficial */
-.matricula-blueprint {
-    background-color: #ffffff;
-    border: 2px dashed var(--secondary-color);
-    border-radius: 6px;
-    padding: 10px;
-    font-family: monospace;
-    font-size: 11px;
-    background-color: #fcfcf6; /* Tono papel antiguo/oficial */
-    margin-bottom: 14px;
+/* Contenedor general de las cápsulas informativas */
+.campos-guia-lista {
+    margin-bottom: 12px; 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px;
 }
 
-.blueprint-header {
-    text-align: center;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 4px;
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: var(--text-muted);
-}
-
-.blueprint-row {
-    padding: 3px 0;
-    color: #4a5568;
-}
-
+/* Estilo para las etiquetas de los campos guía en bloque horizontal */
 .blueprint-row.highlight-field {
-    background-color: #fff3cd; /* Resaltado amarillo tipo marcador */
-    border-left: 3px solid #f6ad55;
-    padding-left: 4px;
-    margin: 2px 0;
+    background-color: #ebf5ea; /* Resaltado amarillo tipo marcador */
+    border-left: 3px solid #8d2f2d;
+    padding: 6px 10px;
+    font-size: 11px;
+    border-radius: 4px;
+    display: inline-flex; /* Cambiado a inline-flex para alinear el número perfectamente con el texto */
+    align-items: center;
+    gap: 6px; /* Separación interna entre el círculo numérico y el texto */
+    font-weight: bold;
+}
+
+/* El círculo indicador con los colores de la matrícula de Ecuador (Fondo Verde, Número Rojo) */
+.num-indicador {
+    background-color: #00ff18; /* Verde esmeralda */
+    color: #8d2f2d;            /* Rojo brillante */
+    font-weight: 900;          /* Texto grueso */
+    font-size: 11px;
+    width: 18px;               /* Ancho del círculo */
+    height: 18px;              /* Alto del círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;        
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Contenedor adaptado para permitir desplazamiento táctil al ampliar */
+.matricula-image-container {
+    width: 100%;
+    max-height: 220px; /* Evita que empuje el botón del modal fuera de la pantalla */
+    margin: 12px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #f7fafc;
+    overflow: auto; /* ACTIVA EL SCROLL: Permite arrastrar con el dedo al ampliar */
+    -webkit-overflow-scrolling: touch; /* Desplazamiento fluido táctil en iOS Safari */
+}
+
+/* Imagen base fluida */
+.matricula-guia-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    cursor: zoom-in; /* Lupa con signo + */
+    transform-origin: top left; /* Eje en la esquina para evitar cortes extraños */
+    transition: transform 0.3s ease, width 0.3s ease, cursor 0.3s ease;
+}
+
+/* Estado ampliado: forzamos a que crezca en ancho para que el contenedor active el scroll */
+.matricula-guia-img.zoomed {
+    width: 220%; /* Crece un 220% para ser totalmente legible en el celular */
+    max-width: none;
+    cursor: zoom-out; /* Lupa con signo - */
 }
 
 .helper-explanation ul {
