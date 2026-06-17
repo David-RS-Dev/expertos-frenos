@@ -249,9 +249,9 @@ function calcularYDesplegarPrecios() {
 }
 
 /* ==========================================================================
-   6. NAVEGACIÓN ENTRE PASOS (WIZARD CONTROL)
+   6. NAVEGACIÓN ENTRE PASOS (WIZARD CONTROL OPTIMIZADO)
    ========================================================================== */
-function irAPaso(numeroPaso) {
+function irAPaso(numeroPaso, esNavegacionHistorial = false) {
     // Si intenta ir a pasos avanzados sin datos, detenemos la ejecución
     if (numeroPaso === 2 && !cotizacionCliente.tipoVehiculo) return;
     if (numeroPaso === 3 && !cotizacionCliente.servicio) return;
@@ -279,6 +279,11 @@ function irAPaso(numeroPaso) {
         document.getElementById("summary-vehiculo").textContent = "Vehículo";
         document.getElementById("summary-servicio").textContent = "Servicio";
         cotizacionCliente.servicio = "";
+    }
+
+    // === NUEVO: Sincronizar la pila del historial con los clics normales del Wizard ===
+    if (!esNavegacionHistorial) {
+        history.pushState({ step: numeroPaso }, "", "");
     }
 }
 
@@ -308,27 +313,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (imagenMatricula) {
         imagenMatricula.addEventListener('click', function() {
-            // Alterna la clase 'zoomed' de forma nativa.
-            // El archivo CSS se encarga de aplicar las dimensiones y habilitar las barras de scroll.
             this.classList.toggle('zoomed');
         });
     }
 });
 
 /* ==========================================================================
-10. CONTROL DEL BOTÓN "ATRÁS" NATIVO + DOBLE PRESIÓN PARA SALIR
-========================================================================== */
+  10. CONTROL DEL BOTÓN "ATRÁS" NATIVO + DOBLE PRESIÓN PARA SALIR
+   ========================================================================== */
 let esperandoSegundoRetroceso = false;
 let timerRetroceso = null;
 
-// 1. El "Cerebro" que escucha el botón Atrás físico del celular o el gesto de retroceso
+// El "Cerebro" que escucha el botón Atrás físico del celular o el gesto de retroceso
 window.addEventListener('popstate', (event) => {
     const state = event.state;
     const modal = document.getElementById("matricula-modal");
     
     // PRIORIDAD 1: Si el modal está abierto visualmente, el botón Atrás debe cerrarlo
     if (modal && !modal.classList.contains("hidden")) {
-        // Usamos tu función nativa para mantener limpia la lógica
         cerrarModalMatricula(); 
         
         // Restauramos el estado del paso actual para que el navegador no intente salirse
@@ -337,56 +339,52 @@ window.addEventListener('popstate', (event) => {
         return; 
     }
 
-    // PRIORIDAD 2: Navegación normal entre pasos del Wizard (Si hay un estado de paso guardado)
+    // PRIORIDAD 2: CORREGIDO -> Cambiado 'cambiarPasoUI' por la función real 'irAPaso'
     if (state && state.step) {
-        cambiarPasoUI(state.step);
+        irAPaso(state.step, true); // El 'true' evita bucles infinitos en el historial
     } 
-    // PRIORIDAD 3: El estado es "null". Significa que el historial de la app se vació.
-    // Esto solo ocurre si el usuario está en el Paso 1 y presionó Atrás para intentar salir.
+    // PRIORIDAD 3: El estado es "null" o el paso actual es el 1 (Intento de salida)
     else {
         const pasoActualVisual = document.querySelector(".wizard-step.active");
         
-        // Doble validación por seguridad
         if (pasoActualVisual && pasoActualVisual.id === "step-1") {
             
             if (!esperandoSegundoRetroceso) {
-                // 🟡 PRIMER INTENTO DE SALIDA: Mostramos aviso y "frenamos" al navegador
+                // 🟡 PRIMER INTENTO DE SALIDA
                 esperandoSegundoRetroceso = true;
                 mostrarToast("Presiona atrás de nuevo para salir");
                 
-                // Empujamos un estado "falso" para que la pila del historial no se vacíe aún
+                // Bloqueamos la pila empujando un estado temporal
                 history.pushState({ step: 1, guard: true }, "", "");
                 
-                // Si no presiona atrás en 2 segundos, reseteamos la bandera
                 timerRetroceso = setTimeout(() => {
                     esperandoSegundoRetroceso = false;
                 }, 2000);
                 
             } else {
-                // 🟢 SEGUNDO INTENTO DE SALIDA (Dentro de los 2 segundos)
+                // 🟢 SEGUNDO INTENTO DE SALIDA (Dentro del rango de 2s)
                 clearTimeout(timerRetroceso);
                 esperandoSegundoRetroceso = false;
-                
-                // No hacemos pushState. La pila del historial se vacía definitivamente
-                // y el navegador procederá a cerrar la pestaña o volver a la app anterior (Instagram, WhatsApp, etc.)
+                window.history.back(); // Permite la salida real del navegador
             }
         }
     }
 });
 
-// 2. Inicializar el estado al cargar la aplicación por primera vez
+// Inicializar el primer estado al cargar la aplicación por primera vez
 document.addEventListener("DOMContentLoaded", () => {
-    window.history.replaceState({ step: 1 }, "", "");
+    if (!history.state) {
+        window.history.replaceState({ step: 1 }, "", "");
+    }
 });
 
-// 3. Función auxiliar para mostrar el Toast (Mensaje flotante)
+// Función auxiliar para mostrar el Toast (Mensaje flotante)
 function mostrarToast(mensaje) {
     const toast = document.getElementById("toast-exit");
     if(toast) {
         toast.querySelector("span").textContent = mensaje;
         toast.classList.remove("hidden");
         
-        // Aseguramos que se oculte automáticamente después de 2 segundos
         setTimeout(() => {
             toast.classList.add("hidden");
         }, 2000);
