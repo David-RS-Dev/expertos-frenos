@@ -314,3 +314,81 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+/* ==========================================================================
+10. CONTROL DEL BOTÓN "ATRÁS" NATIVO + DOBLE PRESIÓN PARA SALIR
+========================================================================== */
+let esperandoSegundoRetroceso = false;
+let timerRetroceso = null;
+
+// 1. El "Cerebro" que escucha el botón Atrás físico del celular o el gesto de retroceso
+window.addEventListener('popstate', (event) => {
+    const state = event.state;
+    const modal = document.getElementById("matricula-modal");
+    
+    // PRIORIDAD 1: Si el modal está abierto visualmente, el botón Atrás debe cerrarlo
+    if (modal && !modal.classList.contains("hidden")) {
+        // Usamos tu función nativa para mantener limpia la lógica
+        cerrarModalMatricula(); 
+        
+        // Restauramos el estado del paso actual para que el navegador no intente salirse
+        const pasoActual = (state && state.step) ? state.step : 1;
+        history.pushState({ step: pasoActual }, "", "");
+        return; 
+    }
+
+    // PRIORIDAD 2: Navegación normal entre pasos del Wizard (Si hay un estado de paso guardado)
+    if (state && state.step) {
+        cambiarPasoUI(state.step);
+    } 
+    // PRIORIDAD 3: El estado es "null". Significa que el historial de la app se vació.
+    // Esto solo ocurre si el usuario está en el Paso 1 y presionó Atrás para intentar salir.
+    else {
+        const pasoActualVisual = document.querySelector(".wizard-step.active");
+        
+        // Doble validación por seguridad
+        if (pasoActualVisual && pasoActualVisual.id === "step-1") {
+            
+            if (!esperandoSegundoRetroceso) {
+                // 🟡 PRIMER INTENTO DE SALIDA: Mostramos aviso y "frenamos" al navegador
+                esperandoSegundoRetroceso = true;
+                mostrarToast("Presiona atrás de nuevo para salir");
+                
+                // Empujamos un estado "falso" para que la pila del historial no se vacíe aún
+                history.pushState({ step: 1, guard: true }, "", "");
+                
+                // Si no presiona atrás en 2 segundos, reseteamos la bandera
+                timerRetroceso = setTimeout(() => {
+                    esperandoSegundoRetroceso = false;
+                }, 2000);
+                
+            } else {
+                // 🟢 SEGUNDO INTENTO DE SALIDA (Dentro de los 2 segundos)
+                clearTimeout(timerRetroceso);
+                esperandoSegundoRetroceso = false;
+                
+                // No hacemos pushState. La pila del historial se vacía definitivamente
+                // y el navegador procederá a cerrar la pestaña o volver a la app anterior (Instagram, WhatsApp, etc.)
+            }
+        }
+    }
+});
+
+// 2. Inicializar el estado al cargar la aplicación por primera vez
+document.addEventListener("DOMContentLoaded", () => {
+    window.history.replaceState({ step: 1 }, "", "");
+});
+
+// 3. Función auxiliar para mostrar el Toast (Mensaje flotante)
+function mostrarToast(mensaje) {
+    const toast = document.getElementById("toast-exit");
+    if(toast) {
+        toast.querySelector("span").textContent = mensaje;
+        toast.classList.remove("hidden");
+        
+        // Aseguramos que se oculte automáticamente después de 2 segundos
+        setTimeout(() => {
+            toast.classList.add("hidden");
+        }, 2000);
+    }
+}

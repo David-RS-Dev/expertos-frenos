@@ -753,3 +753,32 @@ button {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ==========================================================================
+10. TOAST DE CONFIRMACIÓN DE SALIDA (DOBLE PRESIÓN ATRÁS)
+========================================================================== */
+.toast-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro semitransparente */
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 3000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    animation: toastFadeIn 0.3s ease-out;
+    pointer-events: none; /* Permite que el usuario siga tocando la app detrás del mensaje */
+}
+
+.toast-container.hidden {
+    display: none !important;
+}
+
+@keyframes toastFadeIn {
+    from { opacity: 0; bottom: 10px; }
+    to { opacity: 1; bottom: 30px; }
+}
