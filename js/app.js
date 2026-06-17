@@ -249,9 +249,9 @@ function calcularYDesplegarPrecios() {
 }
 
 /* ==========================================================================
-   6. NAVEGACIÓN ENTRE PASOS (WIZARD CONTROL)
+   6. NAVEGACIÓN ENTRE PASOS (WIZARD CONTROL OPTIMIZADO)
    ========================================================================== */
-function irAPaso(numeroPaso) {
+function irAPaso(numeroPaso, esNavegacionHistorial = false) {
     // Si intenta ir a pasos avanzados sin datos, detenemos la ejecución
     if (numeroPaso === 2 && !cotizacionCliente.tipoVehiculo) return;
     if (numeroPaso === 3 && !cotizacionCliente.servicio) return;
@@ -280,6 +280,11 @@ function irAPaso(numeroPaso) {
         document.getElementById("summary-servicio").textContent = "Servicio";
         cotizacionCliente.servicio = "";
     }
+
+    // === NUEVO: Sincronizar la pila del historial con los clics normales del Wizard ===
+    if (!esNavegacionHistorial) {
+        history.pushState({ step: numeroPaso }, "", "");
+    }
 }
 
 /* ==========================================================================
@@ -287,10 +292,16 @@ function irAPaso(numeroPaso) {
    ========================================================================== */
 function mostrarModalMatricula() {
     document.getElementById("matricula-modal").classList.remove("hidden");
+    // ESCUDO: Añadimos un estado específico para que 'Atrás' solo cierre el modal
+    history.pushState({ modalAbierto: true }, "", "");
 }
 
 function cerrarModalMatricula() {
     document.getElementById("matricula-modal").classList.add("hidden");
+    // Si el usuario cerró el modal manualmente, limpiamos el estado del historial
+    if (history.state && history.state.modalAbierto) {
+        history.back();
+    }
 }
 
 /* ==========================================================================
@@ -308,9 +319,87 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (imagenMatricula) {
         imagenMatricula.addEventListener('click', function() {
-            // Alterna la clase 'zoomed' de forma nativa.
-            // El archivo CSS se encarga de aplicar las dimensiones y habilitar las barras de scroll.
             this.classList.toggle('zoomed');
         });
     }
 });
+
+/* ==========================================================================
+   10. CONTROL DEL BOTÓN "ATRÁS" NATIVO + DOBLE PRESIÓN PARA SALIR
+   ========================================================================== */
+let esperandoSegundoRetroceso = false;
+let timerRetroceso = null;
+let saliendoDeApp = false; // Bandera anti-bucle
+
+window.addEventListener('popstate', (event) => {
+    // Anti-bucle: ignoramos popstates mientras estamos en proceso de salida
+    if (saliendoDeApp) return;
+    
+    const state = event.state;
+    const modal = document.getElementById("matricula-modal");
+    
+    // PRIORIDAD 1: Si el modal está abierto, el botón Atrás debe cerrarlo
+    if (modal && !modal.classList.contains("hidden")) {
+        modal.classList.add("hidden");
+        // Restauramos el estado del paso actual
+        history.pushState({ step: 1 }, "", "");
+        return; 
+    }
+
+    // PRIORIDAD 2: Si estamos esperando el segundo retroceso, FORZAMOS LA SALIDA
+    // Esta es la corrección clave: ignoramos el estado que recibimos y salimos
+    if (esperandoSegundoRetroceso) {
+        clearTimeout(timerRetroceso);
+        esperandoSegundoRetroceso = false;
+        saliendoDeApp = true;
+        
+        // Forzamos al navegador a continuar hacia atrás (cerrará la pestaña o irá a Instagram/WhatsApp)
+        window.history.back();
+        
+        // Reset de la bandera después de 100ms para evitar bucles
+        setTimeout(() => { saliendoDeApp = false; }, 100);
+        return;
+    }
+
+    // PRIORIDAD 3: Navegación normal entre pasos del Wizard
+    if (state && state.step) {
+        irAPaso(state.step, true);
+    } 
+    // PRIORIDAD 4: El estado es null (el usuario está en el Paso 1 e intenta salir)
+    else {
+        const pasoActualVisual = document.querySelector(".wizard-step.active");
+        
+        if (pasoActualVisual && pasoActualVisual.id === "step-1") {
+            // 🟡 PRIMER INTENTO DE SALIDA
+            esperandoSegundoRetroceso = true;
+            mostrarToast("Presiona atrás de nuevo para salir");
+            
+            // Empujamos un estado para mantener al usuario en la app visualmente
+            history.pushState({ step: 1, guard: true }, "", "");
+            
+            // Si no presiona atrás en 2 segundos, reseteamos la bandera
+            timerRetroceso = setTimeout(() => {
+                esperandoSegundoRetroceso = false;
+            }, 2000);
+        }
+    }
+});
+
+// Inicializar la aplicación con un colchón en el historial
+document.addEventListener("DOMContentLoaded", () => {
+    if (!history.state) {
+        window.history.replaceState({ step: 1 }, "", "");
+    }
+});
+
+// Función auxiliar para mostrar el Toast
+function mostrarToast(mensaje) {
+    const toast = document.getElementById("toast-exit");
+    if(toast) {
+        toast.querySelector("span").textContent = mensaje;
+        toast.classList.remove("hidden");
+        setTimeout(() => {
+            toast.classList.add("hidden");
+        }, 2000);
+    }
+}
