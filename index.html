@@ -31,6 +31,22 @@
                     <span class="step-text">Precios</span>
                 </div>
             </div>
+
+            <div id="barra-estado-wizard" class="barra-estado hidden">
+                <div class="linea-progreso">
+                    <div class="item-progreso" id="btn-regresar-vehiculo" title="Toca para corregir vehículo">
+                            <strong id="txt-resumen-vehiculo" class="valor-paso">-</strong>
+                    </div>
+                        
+                        <div class="flecha-separador">
+                            ➔
+                        </div>
+
+                        <div class="item-progreso" id="btn-regresar-servicio" title="Toca para cambiar de servicio">
+                            <strong id="txt-resumen-servicio" class="valor-paso">-</strong>
+                        </div>
+                </div>
+            </div>
         </header>
 
         <section id="step-1" class="wizard-step active">
@@ -145,6 +161,16 @@
         <section id="step-3" class="wizard-step">
             <div class="step-instruction">
                 <h3 id="prices-subtitle">Precios sugeridos en base a tu tipo de vehículo.</h3>
+            </div>
+
+            <div id="service-context-card" class="service-context-card">
+                <div class="context-header">
+                    <span class="context-icon"><i class="fa-solid fa-circle-info"></i></span>
+                    <strong id="context-service-name">Servicio seleccionado</strong>
+                </div>
+                <p id="context-service-desc" class="context-description">
+                    Descripción del servicio aparecerá aquí...
+                </p>
             </div>
 
             <div id="tier-pricing-container" class="pricing-tiers-grid">

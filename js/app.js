@@ -144,6 +144,7 @@ function seleccionarVehiculoOficial(marca, modelo, tipoClave) {
     // Ocultamos la lista desplegable y avanzamos al paso de Servicios
     document.getElementById("predictive-results").classList.add("hidden");
     irAPaso(2);
+    actualizarBarraEstado();
 }
 
 function activarContingencia() {
@@ -182,6 +183,7 @@ function confirmarVehiculoManual() {
     }
 
     document.getElementById("summary-vehiculo").textContent = cotizacionCliente.marca;
+    actualizarBarraEstado();
     irAPaso(2);
 }
 
@@ -201,18 +203,49 @@ function seleccionarServicio(servicioClave) {
 
     // Procesamos matemáticamente los precios antes de mostrar la pantalla final
     calcularYDesplegarPrecios();
+    actualizarBarraEstado();
     irAPaso(3);
 }
 
 function calcularYDesplegarPrecios() {
     const tipo = cotizacionCliente.tipoVehiculo;
     const servicio = cotizacionCliente.servicio;
-
     const tierContainer = document.getElementById("tier-pricing-container");
     const dualContainer = document.getElementById("dual-pricing-container");
+    
+    // 🟢 ACTUALIZACIÓN DEL TÍTULO Y LA TARJETA DE CONTEXTO
     const subtitulo = document.getElementById("prices-subtitle");
+    const contextName = document.getElementById("context-service-name");
+    const contextDesc = document.getElementById("context-service-desc");
 
-    subtitulo.textContent = `Precios calculados para tu ${cotizacionCliente.marca} ${cotizacionCliente.modelo}`;
+    // 1. Armamos el nombre del vehículo
+    const nombreVehiculo = cotizacionCliente.modelo ? 
+        `${cotizacionCliente.marca} ${cotizacionCliente.modelo}` : 
+        cotizacionCliente.marca; 
+        
+    subtitulo.textContent = `Precios para ${nombreVehiculo}`;
+
+    // 2. Mapeamos el servicio a su nombre comercial Y descripción completa
+    const serviciosInfo = {
+        "calidad_pastillas": {
+            nombre: "Pastillas Nuevas",
+            descripcion: "Incluye Instalación GRATIS. Instalación de pastillas de freno nuevas en el eje delantero o posterior."
+        },
+        "servicio_integral": {
+            nombre: "Servicio Integral",
+            descripcion: "Incluye Instalación GRATIS. Pastillas nuevas + Rectificación técnica del par de discos delanteros para evitar vibraciones."
+        },
+        "mano_de_obra": {
+            nombre: "Solo Mano de Obra",
+            descripcion: "Si ya compraste tus propias pastillas o discos y buscas únicamente instalación calificada."
+        }
+    };
+
+    const servicioActual = serviciosInfo[servicio];
+    if (servicioActual) {
+        contextName.textContent = servicioActual.nombre;
+        contextDesc.textContent = servicioActual.descripcion;
+    }
 
     // CASO A: SERVICIO DE MANO DE OBRA (Estructura de Tarjetas Duales)
     if (servicio === "mano_de_obra") {
@@ -403,3 +436,57 @@ function mostrarToast(mensaje) {
         }, 2000);
     }
 }
+
+/* ==========================================================================
+11. ACTUALIZACIÓN Y NAVEGACIÓN DE LA BARRA DE ESTADO (BREADCRUMB)
+========================================================================== */
+function actualizarBarraEstado() {
+    const barra = document.getElementById('barra-estado-wizard');
+    const txtVehiculo = document.getElementById('txt-resumen-vehiculo');
+    const txtServicio = document.getElementById('txt-resumen-servicio');
+    const btnServicio = document.getElementById('btn-regresar-servicio');
+
+    // 1. Si hay un vehículo seleccionado, mostramos la barra
+    if (cotizacionCliente.tipoVehiculo) {
+        // Armamos el nombre (maneja el caso de contingencia donde no hay modelo)
+        const nombreVehiculo = cotizacionCliente.modelo ? 
+            `${cotizacionCliente.marca} ${cotizacionCliente.modelo}` : 
+            cotizacionCliente.marca;
+            
+        txtVehiculo.textContent = nombreVehiculo;
+        barra.classList.remove('hidden');
+    } else {
+        barra.classList.add('hidden');
+        return;
+    }
+
+    // 2. Si ya eligió servicio, lo mapeamos a un nombre comercial legible
+    if (cotizacionCliente.servicio) {
+        const nombresComerciales = {
+            'calidad_pastillas': 'Pastillas Nuevas',
+            'servicio_integral': 'Servicio Integral',
+            'mano_de_obra': 'Solo Mano de Obra'
+        };
+        txtServicio.textContent = nombresComerciales[cotizacionCliente.servicio] || cotizacionCliente.servicio;
+        btnServicio.style.opacity = "1"; // Totalmente visible y clicable
+    } else {
+        txtServicio.textContent = 'Eligiendo...';
+        btnServicio.style.opacity = "0.5"; // Opaco porque aún no llega aquí
+    }
+}
+
+// 🟢 CONEXIÓN DE LOS CLICS DE LA BARRA CON TU WIZARD
+document.addEventListener("DOMContentLoaded", () => {
+    const btnVehiculo = document.getElementById('btn-regresar-vehiculo');
+    const btnServicio = document.getElementById('btn-regresar-servicio');
+
+    if(btnVehiculo) {
+        btnVehiculo.addEventListener('click', () => irAPaso(1));
+    }
+    if(btnServicio) {
+        btnServicio.addEventListener('click', () => {
+            // Solo dejamos ir al paso 2 si ya hay un vehículo elegido
+            if(cotizacionCliente.tipoVehiculo) irAPaso(2);
+        });
+    }
+});
