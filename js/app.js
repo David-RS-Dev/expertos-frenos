@@ -231,7 +231,7 @@ function calcularYDesplegarPrecios() {
             descripcion: "Instalación de pastillas de freno nuevas en el eje delantero o posterior."
         },
         "servicio_integral": {
-            titulo: "Servicio Integral (Recomendado)",
+            titulo: "Servicio Integral",
             freeInstall: "Incluye Instalación GRATIS",
             descripcion: "Pastillas nuevas + Rectificación técnica del par de discos delanteros para evitar vibraciones."
         },
