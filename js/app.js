@@ -303,10 +303,60 @@ function cerrarModalMatricula() {
 }
 
 /* ==========================================================================
-8. CIERRE DE LA OPERACIÓN COMERCIAL
+8. CIERRE DE LA OPERACIÓN COMERCIAL (ENVÍO DIRECTO A WHATSAPP)
 ========================================================================== */
 function finalizarCotizacion(nivelElegido) {
-    alert(`¡Excelente elección! Has seleccionado la alternativa: ${nivelElegido}.\nPresenta esta pantalla en la recepción del taller para validar tu cotización.`);
+    const tipo = cotizacionCliente.tipoVehiculo;
+    const servicio = cotizacionCliente.servicio;
+    
+    // 1. Obtenemos el precio exacto según la elección del cliente
+    let precioSeleccionado = 0;
+    if (servicio === "mano_de_obra") {
+        if (nivelElegido.includes("Solo Pastillas")) {
+            precioSeleccionado = datosTarifas[tipo]["mano_de_obra"].solo_pastillas;
+        } else if (nivelElegido.includes("Instalación Completa")) {
+            precioSeleccionado = datosTarifas[tipo]["mano_de_obra"].cambio_discos;
+        }
+    } else {
+        // Mapeo de la etiqueta visual del botón a la clave exacta del JSON
+        const mapaNiveles = { "Estándar": "ESTANDAR", "Premium": "PREMIUM", "Urbano": "URBANO" };
+        const claveNivel = mapaNiveles[nivelElegido];
+        precioSeleccionado = datosTarifas[tipo][servicio][claveNivel];
+    }
+
+    // 2. Armamos el nombre completo del vehículo
+    const nombreVehiculo = cotizacionCliente.modelo ? 
+        `${cotizacionCliente.marca} ${cotizacionCliente.modelo}` : 
+        cotizacionCliente.marca;
+
+    // 3. Mapeamos el servicio a un nombre comercial legible
+    const nombresServicio = {
+        'calidad_pastillas': 'Pastillas Nuevas',
+        'servicio_integral': 'Servicio Integral',
+        'mano_de_obra': 'Solo Mano de Obra'
+    };
+
+    // 4. Construimos el mensaje estructurado para que el taller sepa qué atender
+    let mensaje = `¡Hola! 👋 He generado una cotización en la Web App y quiero agendar mi cita.`;
+    mensaje += `\n\n🚗 *Vehículo:* ${nombreVehiculo}`;
+    mensaje += `\n🔧 *Servicio:* ${nombresServicio[servicio]}`;
+    mensaje += `\n⭐ *Nivel elegido:* ${nivelElegido}`;
+    mensaje += `\n💵 *Precio referencial:* $${precioSeleccionado} + IVA`;
+    mensaje += `\n\n¿Tienen disponibilidad para atenderme?`;
+
+    // 5. Generamos la URL oficial de WhatsApp
+    const urlWhatsApp = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+    
+    // 6. 🟢 ABRIMOS WHATSAPP DE FORMA NATIVA (Cero bloqueos en PC y Móvil)
+    // Creamos un enlace temporal, lo clickeamos y lo removemos. 
+    // Esto engaña al navegador para que no lo trate como Pop-up invasivo.
+    const link = document.createElement('a');
+    link.href = urlWhatsApp;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 /* ==========================================================================
