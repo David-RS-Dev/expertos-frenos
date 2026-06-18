@@ -432,7 +432,7 @@ function inicializarBotonWhatsApp() {
 
     // ⚠️ PERSONALIZA AQUÍ TU NÚMERO (formato internacional sin + ni espacios)
     // Ejemplo Ecuador: 5939XXXXXXXX (593 = país, 9 = celular)
-    const NUMERO_WHATSAPP = "5939XXXXXXXX";
+    const NUMERO_WHATSAPP = "593962059311";
 
     // Construimos el mensaje predefinido dinámicamente según el estado del cliente
     const mensajeBase = "¡Hola! 👋 Estoy en la Web App de *Expertos en Frenos* y me gustaría recibir asesoría.";
