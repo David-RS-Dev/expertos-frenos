@@ -129,6 +129,7 @@ function seleccionarVehiculoOficial(marca, modelo, tipoClave) {
     document.getElementById("predictive-results").classList.add("hidden");
     irAPaso(2);
     actualizarBarraEstado();
+    actualizarEnlaceWhatsApp();
 }
 
 function activarContingencia() {
@@ -163,6 +164,7 @@ function confirmarVehiculoManual() {
     document.getElementById("summary-vehiculo").textContent = cotizacionCliente.marca;
     actualizarBarraEstado();
     irAPaso(2);
+    actualizarEnlaceWhatsApp();
 }
 
 /* ==========================================================================
@@ -181,6 +183,7 @@ function seleccionarServicio(servicioClave) {
     calcularYDesplegarPrecios();
     actualizarBarraEstado();
     irAPaso(3);
+    actualizarEnlaceWhatsApp();
 }
 
 function calcularYDesplegarPrecios() {
@@ -426,46 +429,42 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ==========================================================================
 12. 🟢 BOTÓN FLOTANTE DE WHATSAPP - CONFIGURACIÓN DINÁMICA
 ========================================================================== */
+// ⚠️ PERSONALIZA AQUÍ TU NÚMERO (formato internacional sin + ni espacios)
+const NUMERO_WHATSAPP = "593962059311"; // <-- Pon tu número real aquí
+
 function inicializarBotonWhatsApp() {
+    // Ya no usamos window.open (que los PC bloquean). 
+    // Solo llamamos a la función que inyecta el enlace en el <a> nativo.
+    actualizarEnlaceWhatsApp();
+}
+
+function actualizarEnlaceWhatsApp() {
     const btnWhatsApp = document.getElementById("whatsapp-float-btn");
     if (!btnWhatsApp) return;
 
-    // ⚠️ PERSONALIZA AQUÍ TU NÚMERO (formato internacional sin + ni espacios)
-    // Ejemplo Ecuador: 5939XXXXXXXX (593 = país, 9 = celular)
-    const NUMERO_WHATSAPP = "593962059311";
+    let mensajeFinal = "¡Hola! 👋 Estoy en la Web App de *Expertos en Frenos* y me gustaría recibir asesoría.";
 
-    // Construimos el mensaje predefinido dinámicamente según el estado del cliente
-    const mensajeBase = "¡Hola! 👋 Estoy en la Web App de *Expertos en Frenos* y me gustaría recibir asesoría.";
+    // Si el cliente ya eligió vehículo, lo agregamos al mensaje
+    if (cotizacionCliente.tipoVehiculo) {
+        const nombreVehiculo = cotizacionCliente.modelo ?
+            `${cotizacionCliente.marca} ${cotizacionCliente.modelo}` :
+            cotizacionCliente.marca;
+        mensajeFinal += `\n\n🚗 *Mi vehículo:* ${nombreVehiculo}`;
+    }
 
-    btnWhatsApp.addEventListener("click", (e) => {
-        e.preventDefault();
+    // Si ya eligió servicio, lo agregamos también
+    if (cotizacionCliente.servicio) {
+        const nombresServicio = {
+            'calidad_pastillas': 'Pastillas Nuevas',
+            'servicio_integral': 'Servicio Integral',
+            'mano_de_obra': 'Solo Mano de Obra'
+        };
+        mensajeFinal += `\n🔧 *Servicio de interés:* ${nombresServicio[cotizacionCliente.servicio]}`;
+    }
 
-        // Si el cliente ya completó la cotización, enriquecemos el mensaje con sus datos
-        let mensajeFinal = mensajeBase;
+    mensajeFinal += "\n\n¿Me pueden confirmar disponibilidad y agendar una cita?";
 
-        if (cotizacionCliente.tipoVehiculo) {
-            const nombreVehiculo = cotizacionCliente.modelo ?
-                `${cotizacionCliente.marca} ${cotizacionCliente.modelo}` :
-                cotizacionCliente.marca;
-
-            mensajeFinal += `\n\n🚗 *Mi vehículo:* ${nombreVehiculo}`;
-        }
-
-        if (cotizacionCliente.servicio) {
-            const nombresServicio = {
-                'calidad_pastillas': 'Pastillas Nuevas',
-                'servicio_integral': 'Servicio Integral',
-                'mano_de_obra': 'Solo Mano de Obra'
-            };
-            mensajeFinal += `\n🔧 *Servicio de interés:* ${nombresServicio[cotizacionCliente.servicio]}`;
-        }
-
-        mensajeFinal += "\n\n¿Me pueden confirmar disponibilidad y agendar una cita?";
-
-        // Codificamos el mensaje para la URL
-        const urlWhatsApp = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensajeFinal)}`;
-
-        // Abrimos WhatsApp (en móvil abrirá la app nativa; en desktop, WhatsApp Web)
-        window.open(urlWhatsApp, '_blank');
-    });
+    // 🟢 LA CLAVE: Inyectamos la URL directamente en el atributo href del <a>
+    const urlWhatsApp = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensajeFinal)}`;
+    btnWhatsApp.href = urlWhatsApp;
 }
