@@ -1,41 +1,42 @@
 /* ==========================================================================
-   1. VARIABLES, RESETEO Y ESTILOS BASE
-   ========================================================================== */
+1. VARIABLES, RESETEO Y ESTILOS BASE
+========================================================================== */
 :root {
-    --primary-color: #1a365d;       /* Azul corporativo profundo */
-    --secondary-color: #2b6cb0;     /* Azul interactivo */
-    --accent-color: #319795;        /* Verde turquesa para destacar */
-    --urbano-color: #718096;        /* Gris para la opción económica */
-    --premium-color: #b7791f;       /* Dorado/Bronce para alta gama */
-    --bg-app: #f7fafc;              /* Fondo gris ultra claro texturizado */
-    --card-bg: #ffffff;             /* Fondo de tarjetas */
-    --text-main: #2d3748;           /* Texto principal legible */
-    --text-muted: #718096;          /* Texto secundario */
-    --border-color: #e2e8f0;        /* Bordes suaves */
-    --radius: 12px;                 /* Esquinas redondeadas modernas */
+    --primary-color: #1a365d;
+    --secondary-color: #2b6cb0;
+    --accent-color: #319795;
+    --urbano-color: #718096;
+    --premium-color: #b7791f;
+    --bg-app: #f7fafc;
+    --card-bg: #ffffff;
+    --text-main: #2d3748;
+    --text-muted: #718096;
+    --border-color: #e2e8f0;
+    --radius: 12px;
     --transition: all 0.25s ease;
+    --whatsapp-color: #25D366;
+    --whatsapp-dark: #128C7E;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    -webkit-tap-highlight-color: transparent; /* Elimina el destello azul en móviles */
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #e2e8f0; /* Fondo externo simulando entorno de escritorio */
+    background-color: #e2e8f0;
     color: var(--text-main);
     line-height: 1.5;
     display: flex;
     justify-content: center;
 }
 
-/* Contenedor tipo "App de Celular" para pruebas y producción en Vercel */
 .app-container {
     width: 100%;
-    max-width: 480px; /* Ancho estándar de un teléfono móvil grande */
+    max-width: 480px;
     min-height: 100vh;
     background-color: var(--bg-app);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
@@ -46,8 +47,8 @@ body {
 }
 
 /* ==========================================================================
-   2. ENCABEZADO Y BARRA DE ESTADO INTERACTIVA (WIZARD)
-   ========================================================================== */
+2. ENCABEZADO Y BARRA DE ESTADO INTERACTIVA (WIZARD)
+========================================================================== */
 .app-header {
     background-color: var(--card-bg);
     padding: 16px;
@@ -65,11 +66,8 @@ body {
     margin-bottom: 12px;
 }
 
-.logo-zone i {
-    margin-right: 6px;
-}
+.logo-zone i { margin-right: 6px; }
 
-/* Barra de progreso secuencial */
 .wizard-progress-bar {
     display: flex;
     align-items: center;
@@ -86,9 +84,7 @@ body {
     transition: var(--transition);
 }
 
-.step-indicator.active {
-    opacity: 1;
-}
+.step-indicator.active { opacity: 1; }
 
 .step-icon {
     width: 36px;
@@ -122,9 +118,7 @@ body {
     text-overflow: ellipsis;
 }
 
-.step-indicator.active .step-text {
-    color: var(--secondary-color);
-}
+.step-indicator.active .step-text { color: var(--secondary-color); }
 
 .step-divider {
     height: 2px;
@@ -134,17 +128,15 @@ body {
 }
 
 /* ==========================================================================
-   3. ELEMENTOS DE CONTROL, BOTONES Y TARJETAS
-   ========================================================================== */
+3. ELEMENTOS DE CONTROL, BOTONES Y TARJETAS
+========================================================================== */
 .wizard-step {
-    display: none; /* Oculta los pasos por defecto */
+    display: none;
     padding: 20px 16px;
     animation: fadeIn 0.3s ease-in-out;
 }
 
-.wizard-step.active {
-    display: block; /* Muestra solo el paso activo controlado por JS */
-}
+.wizard-step.active { display: block; }
 
 .step-instruction h3 {
     font-size: 18px;
@@ -158,7 +150,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Botones genéricos de gran tamaño táctil */
 button {
     font-family: inherit;
     border: none;
@@ -191,9 +182,7 @@ button {
     border: 1px solid var(--border-color);
 }
 
-.btn-secondary:active {
-    background-color: #e2e8f0;
-}
+.btn-secondary:active { background-color: #e2e8f0; }
 
 .btn-text {
     background: none;
@@ -205,8 +194,8 @@ button {
 }
 
 /* ==========================================================================
-   4. MODULO 1: BUSCADOR PREDICTIVO Y ASISTENCIA (PASO 1)
-   ========================================================================== */
+4. MODULO 1: BUSCADOR PREDICTIVO Y ASISTENCIA (PASO 1)
+========================================================================== */
 .search-card, .helper-card {
     background-color: var(--card-bg);
     border-radius: var(--radius);
@@ -242,9 +231,7 @@ button {
     transition: var(--transition);
 }
 
-.input-group input:focus {
-    border-color: var(--secondary-color);
-}
+.input-group input:focus { border-color: var(--secondary-color); }
 
 #clear-search-btn {
     position: absolute;
@@ -254,7 +241,6 @@ button {
     font-size: 18px;
 }
 
-/* Desplegable predictivo (Resultados) */
 .suggestions-list {
     list-style: none;
     background-color: var(--card-bg);
@@ -277,9 +263,7 @@ button {
     align-items: center;
 }
 
-.suggestions-list li:active {
-    background-color: #f0f4f8;
-}
+.suggestions-list li:active { background-color: #f0f4f8; }
 
 .suggestions-list li span.badge-tipo {
     font-size: 11px;
@@ -301,8 +285,8 @@ button {
 }
 
 /* ==========================================================================
-   5. CONTINGENCIA VISUAL POR SILUETAS (BOTONES GRANDES)
-   ========================================================================== */
+5. CONTINGENCIA VISUAL POR SILUETAS (BOTONES GRANDES)
+========================================================================== */
 .section-divider {
     border: 0;
     height: 1px;
@@ -338,10 +322,7 @@ button {
     background-color: #f0f4f8;
 }
 
-.car-emoji {
-    font-size: 28px;
-    margin-bottom: 6px;
-}
+.car-emoji { font-size: 28px; margin-bottom: 6px; }
 
 .silhouette-card h5 {
     font-size: 13px;
@@ -354,11 +335,11 @@ button {
     color: var(--text-muted);
 }
 
-/* El elemento Premium ocupa todo el ancho horizontal de la rejilla */
 .premium-silhouette {
     grid-column: span 2;
     border-color: #ebd5b3;
 }
+
 .premium-silhouette:active, .premium-silhouette.selected {
     border-color: var(--premium-color);
     background-color: #fffaf0;
@@ -389,8 +370,8 @@ button {
 }
 
 /* ==========================================================================
-   6. SELECCIÓN DE SERVICIOS (PASO 2)
-   ========================================================================== */
+6. SELECCIÓN DE SERVICIOS (PASO 2)
+========================================================================== */
 .services-vertical-list {
     display: flex;
     flex-direction: column;
@@ -418,10 +399,7 @@ button {
     width: 44px;
 }
 
-.service-details {
-    flex: 1;
-    padding: 0 10px;
-}
+.service-details { flex: 1; padding: 0 10px; }
 
 .service-details h4 {
     font-size: 15px;
@@ -440,8 +418,8 @@ button {
 }
 
 /* ==========================================================================
-   7. PANTALLA COMERCIAL: TERNA GOOD-BETTER-BEST (PASO 3)
-   ========================================================================== */
+7. PANTALLA COMERCIAL: TERNA GOOD-BETTER-BEST (PASO 3)
+========================================================================== */
 .pricing-tiers-grid {
     display: flex;
     flex-direction: column;
@@ -459,10 +437,7 @@ button {
     box-shadow: 0 4px 10px rgba(0,0,0,0.02);
 }
 
-.tier-card h4 {
-    font-size: 16px;
-    margin-top: 6px;
-}
+.tier-card h4 { font-size: 16px; margin-top: 6px; }
 
 .tier-desc {
     font-size: 12px;
@@ -504,7 +479,6 @@ button {
     font-size: 14px;
 }
 
-/* Badges decorativas de nivel */
 .tier-badge {
     position: absolute;
     top: -10px;
@@ -515,21 +489,19 @@ button {
     border-radius: 20px;
     color: #ffffff;
 }
+
 .urbano-badge { background-color: var(--urbano-color); }
 .estandar-badge { background-color: var(--accent-color); }
 .premium-badge { background-color: var(--premium-color); }
 
-/* PSICOLOGÍA DE CONSUMIDOR: RESALTADO DE LA OPCIÓN ESTÁNDAR (BETTER) */
 .tier-card.featured-tier {
     border-color: var(--accent-color);
-    background-color: #f0fff4; /* Fondo sutilmente verdoso/limpio */
-    transform: scale(1.02); /* Efecto visual de jerarquía */
+    background-color: #f0fff4;
+    transform: scale(1.02);
     box-shadow: 0 6px 16px rgba(49, 151, 149, 0.15);
 }
 
-.tier-card.featured-tier h4 {
-    color: #234e52;
-}
+.tier-card.featured-tier h4 { color: #234e52; }
 
 .btn-featured {
     background-color: var(--accent-color);
@@ -537,42 +509,39 @@ button {
     box-shadow: 0 4px 10px rgba(49, 151, 149, 0.3);
 }
 
-.btn-featured:active {
-    background-color: #234e52;
-}
+.btn-featured:active { background-color: #234e52; }
 
 .btn-premium {
-    background-color: var(--premium-color); /* #b7791f */
+    background-color: var(--premium-color);
     color: #ffffff;
     box-shadow: 0 4px 10px rgba(183, 121, 31, 0.25);
 }
+
 .btn-premium:active {
-    background-color: #975a16; /* Tono más oscuro al presionar */
+    background-color: #975a16;
     transform: scale(0.98);
 }
 
 .btn-urbano {
     background-color: #ffffff;
-    color: var(--urbano-color); /* #718096 */
+    color: var(--urbano-color);
     border: 2px solid var(--urbano-color);
     box-shadow: none;
 }
+
 .btn-urbano:active {
     background-color: #f7fafc;
     transform: scale(0.98);
 }
 
 .tier-card.premium-tier-card {
-    border-color: var(--premium-color);   /* Borde dorado */
-    background-color: #fffaf0;            
-    box-shadow: 0 4px 12px rgba(183, 121, 31, 0.1); 
+    border-color: var(--premium-color);
+    background-color: #fffaf0;
+    box-shadow: 0 4px 12px rgba(183, 121, 31, 0.1);
 }
 
-.tier-card.premium-tier-card h4 {
-    color: var(--premium-color);          /* Título combinado */
-}
+.tier-card.premium-tier-card h4 { color: var(--premium-color); }
 
-/* MANEJO DE LA RESTRICCIÓN PREMIUM (OCULTADO/BLOQUEO DE URBANO) */
 .tier-card.restricted {
     opacity: 0.6;
     border-color: #fed7d7;
@@ -580,9 +549,7 @@ button {
 }
 
 .tier-card.restricted .tier-price,
-.tier-card.restricted .btn-select-tier {
-    display: none; /* Oculta el precio y botón si está restringido */
-}
+.tier-card.restricted .btn-select-tier { display: none; }
 
 .restriction-msg {
     color: #c53030;
@@ -594,7 +561,6 @@ button {
     gap: 6px;
 }
 
-/* ESTRUCTURA DUAL (MANO DE OBRA) */
 .pricing-dual-list {
     display: flex;
     flex-direction: column;
@@ -616,6 +582,7 @@ button {
     font-weight: 800;
     color: var(--primary-color);
 }
+
 .dual-option-cost small {
     font-size: 11px;
     color: var(--text-muted);
@@ -634,15 +601,15 @@ button {
 }
 
 /* ==========================================================================
-   8. COMPONENTE MODAL (GUÍA DE MATRÍCULA DE ECUADOR) - OPTIMIZADO
-   ========================================================================== */
+8. COMPONENTE MODAL (GUÍA DE MATRÍCULA DE ECUADOR)
+========================================================================== */
 .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(26, 32, 44, 0.6); /* Fondo oscurecido traslúcido */
+    background-color: rgba(26, 32, 44, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -684,9 +651,7 @@ button {
     font-weight: 300;
 }
 
-.modal-body {
-    padding: 16px;
-}
+.modal-body { padding: 16px; }
 
 .modal-body p {
     font-size: 13px;
@@ -694,75 +659,67 @@ button {
     margin-bottom: 14px;
 }
 
-/* Contenedor general de las cápsulas informativas */
 .campos-guia-lista {
-    margin-bottom: 12px; 
-    display: flex; 
-    flex-wrap: wrap; 
+    margin-bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
-/* Estilo para las etiquetas de los campos guía en bloque horizontal */
 .blueprint-row.highlight-field {
-    background-color: #ebf5ea; /* Resaltado amarillo tipo marcador */
+    background-color: #ebf5ea;
     border-left: 3px solid #8d2f2d;
     padding: 6px 10px;
     font-size: 11px;
     border-radius: 4px;
-    display: inline-flex; /* Cambiado a inline-flex para alinear el número perfectamente con el texto */
+    display: inline-flex;
     align-items: center;
-    gap: 6px; /* Separación interna entre el círculo numérico y el texto */
+    gap: 6px;
     font-weight: bold;
 }
 
-/* El círculo indicador con los colores de la matrícula de Ecuador (Fondo Verde, Número Rojo) */
 .num-indicador {
-    background-color: #00ff18; /* Verde esmeralda */
-    color: #8d2f2d;            /* Rojo brillante */
-    font-weight: 900;          /* Texto grueso */
+    background-color: #00ff18;
+    color: #8d2f2d;
+    font-weight: 900;
     font-size: 11px;
-    width: 18px;               /* Ancho del círculo */
-    height: 18px;              /* Alto del círculo */
+    width: 18px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;        
+    border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* Contenedor adaptado para permitir desplazamiento táctil al ampliar */
 .matricula-image-container {
     width: 100%;
-    max-height: 220px; /* Evita que empuje el botón del modal fuera de la pantalla */
+    max-height: 220px;
     margin: 12px 0;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     background-color: #f7fafc;
-    overflow: auto; /* ACTIVA EL SCROLL: Permite arrastrar con el dedo al ampliar */
-    -webkit-overflow-scrolling: touch; /* Desplazamiento fluido táctil en iOS Safari */
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* Imagen base fluida */
 .matricula-guia-img {
     width: 100%;
     height: auto;
     display: block;
     object-fit: contain;
-    cursor: zoom-in; /* Lupa con signo + */
-    transform-origin: top left; /* Eje en la esquina para evitar cortes extraños */
+    cursor: zoom-in;
+    transform-origin: top left;
     transition: transform 0.3s ease, width 0.3s ease, cursor 0.3s ease;
 }
 
-/* Estado ampliado: forzamos a que crezca en ancho para que el contenedor active el scroll */
 .matricula-guia-img.zoomed {
-    width: 220%; /* Crece un 220% para ser totalmente legible en el celular */
+    width: 220%;
     max-width: none;
-    cursor: zoom-out; /* Lupa con signo - */
+    cursor: zoom-out;
 }
 
-.helper-explanation ul {
-    list-style: none;
-}
+.helper-explanation ul { list-style: none; }
 
 .helper-explanation li {
     font-size: 12px;
@@ -775,11 +732,9 @@ button {
 .modal-footer { padding: 0 16px 16px 16px; }
 
 /* ==========================================================================
-   9. UTILIDADES Y ANIMACIONES
-   ========================================================================== */
-.hidden {
-    display: none !important; /* Fuerza el ocultamiento */
-}
+9. UTILIDADES Y ANIMACIONES
+========================================================================== */
+.hidden { display: none !important; }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
@@ -787,14 +742,14 @@ button {
 }
 
 /* ==========================================================================
-10. TOAST DE CONFIRMACIÓN DE SALIDA (DOBLE PRESIÓN ATRÁS)
+10. TOAST DE CONFIRMACIÓN DE SALIDA
 ========================================================================== */
 .toast-container {
     position: fixed;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro semitransparente */
+    background-color: rgba(0, 0, 0, 0.85);
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 30px;
@@ -803,12 +758,10 @@ button {
     z-index: 3000;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     animation: toastFadeIn 0.3s ease-out;
-    pointer-events: none; /* Permite que el usuario siga tocando la app detrás del mensaje */
+    pointer-events: none;
 }
 
-.toast-container.hidden {
-    display: none !important;
-}
+.toast-container.hidden { display: none !important; }
 
 @keyframes toastFadeIn {
     from { opacity: 0; bottom: 10px; }
@@ -816,10 +769,10 @@ button {
 }
 
 /* ==========================================================================
-11. BARRA DE ESTADO INTERACTIVA (COMPACTA / SIN ETIQUETAS)
+11. BARRA DE ESTADO INTERACTIVA (COMPACTA)
 ========================================================================== */
 .barra-estado {
-    margin: 10px 16px 0 16px; 
+    margin: 10px 16px 0 16px;
     padding: 4px 10px;
     background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
     border-radius: 10px;
@@ -839,7 +792,6 @@ button {
     justify-content: space-between;
 }
 
-/* Al no tener la etiqueta arriba, ajustamos el contenedor para que sea un "chip" táctil */
 .item-progreso {
     display: flex;
     align-items: center;
@@ -847,20 +799,18 @@ button {
     cursor: pointer;
     flex: 1;
     transition: var(--transition);
-    padding: 3px 6px; 
+    padding: 3px 6px;
     border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo tipo pastilla/chip */
+    background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
-/* Efecto táctil al presionar para retroceder */
 .item-progreso:active {
     background-color: #ffffff;
     transform: scale(0.96);
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* El texto ahora es el único protagonista, así que lo hacemos más legible */
 .valor-paso {
     font-size: 11px;
     color: var(--primary-color);
@@ -870,7 +820,7 @@ button {
     text-overflow: ellipsis;
     margin: 0;
     font-weight: 600;
-    max-width: 100px; /* Evita que nombres muy largos rompan el diseño */
+    max-width: 100px;
 }
 
 .flecha-separador {
@@ -883,7 +833,7 @@ button {
 }
 
 /* ==========================================================================
-12. TARJETA DE CONFIRMACIÓN DEL SERVICIO (PASO 3) - RÉPLICA OPTIMIZADA
+12. TARJETA DE CONFIRMACIÓN DEL SERVICIO (PASO 3)
 ========================================================================== */
 .service-context-card {
     background: linear-gradient(135deg, #f0f4f8 0%, #ebf8ff 100%);
@@ -899,23 +849,22 @@ button {
 
 .context-row {
     display: flex;
-    align-items: center; /* Alineación superior para que el check quede centrado */
+    align-items: center;
     gap: 12px;
 }
 
-/* 🟢 EL CHECK CENTRADO VERTICALMENTE */
 .context-check-icon {
-    flex-shrink: 0; /* Evita que el icono se encoja */
+    flex-shrink: 0;
     width: 28px;
     height: 28px;
-    background-color: #38a169; /* Verde éxito */
+    background-color: #38a169;
     color: #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    margin-top: 0; /* Ajuste fino para centrado visual perfecto */
+    margin-top: 0;
     box-shadow: 0 2px 4px rgba(56, 161, 105, 0.3);
 }
 
@@ -926,7 +875,6 @@ button {
     gap: 2px;
 }
 
-/* REPLICA EXACTA DE LOS ESTILOS DEL PASO 2 */
 .context-content h4 {
     font-size: 15px;
     color: var(--primary-color);
@@ -937,7 +885,7 @@ button {
 
 .context-free-install {
     font-size: 12px;
-    color: var(--accent-color); /* Turquesa para destacar */
+    color: var(--accent-color);
     font-weight: 600;
     margin: 0;
     line-height: 1.2;
@@ -949,4 +897,89 @@ button {
     margin: 0;
     line-height: 1.4;
     padding-top: 2px;
+}
+
+/* ==========================================================================
+13. 🟢 BOTÓN FLOTANTE DE WHATSAPP (OPTIMIZADO MÓVIL)
+========================================================================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--whatsapp-color);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+    z-index: 500; /* Debajo del modal (1000) pero sobre el header (100) */
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: whatsappPulse 2.5s infinite;
+}
+
+/* Efecto táctil al presionar */
+.whatsapp-float:active {
+    transform: scale(0.92);
+    box-shadow: 0 3px 10px rgba(37, 211, 102, 0.4);
+}
+
+/* Tooltip lateral que aparece al pasar el cursor (útil en desktop) */
+.whatsapp-tooltip {
+    position: absolute;
+    right: 72px;
+    background-color: #ffffff;
+    color: var(--text-main);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Pequeña flecha del tooltip */
+.whatsapp-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -6px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid #ffffff;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+}
+
+/* Mostrar tooltip al pasar el cursor (desktop) */
+.whatsapp-float:hover .whatsapp-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animación de pulso sutil para llamar la atención sin molestar */
+@keyframes whatsappPulse {
+    0% { box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.5); }
+    70% { box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45), 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Ajuste para pantallas muy pequeñas: reducimos ligeramente el botón */
+@media (max-height: 600px) {
+    .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        font-size: 28px;
+        bottom: 16px;
+        right: 14px;
+    }
 }
