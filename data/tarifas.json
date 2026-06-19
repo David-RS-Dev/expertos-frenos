@@ -20,8 +20,8 @@
     "mano_de_obra": { "solo_pastillas": 25, "cambio_discos": 30 }
   },
   "Vehiculo premium": {
-    "calidad_pastillas": { "EXCLUSIVA_WEB": null, "ESTANDAR": 125, "PREMIUM": 185 },
-    "servicio_integral": { "EXCLUSIVA_WEB": null, "ESTANDAR": 205, "PREMIUM": 265 },
+    "calidad_pastillas": { "EXCLUSIVA_WEB": 145, "ESTANDAR": 195, "PREMIUM": 195 },
+    "servicio_integral": { "EXCLUSIVA_WEB": 225, "ESTANDAR": 275, "PREMIUM": 275 },
     "mano_de_obra": { "solo_pastillas": 40, "cambio_discos": 50 }
   }
 }
