@@ -175,7 +175,8 @@ function seleccionarServicio(servicioClave) {
     const etiquetasServicio = {
         "calidad_pastillas": "Pastillas Nuevas",
         "servicio_integral": "S. Integral",
-        "mano_de_obra": "Mano de Obra"
+        "mano_de_obra": "Mano de Obra",
+        "rectificacion": "Rectificación"
     };
     
     document.getElementById("summary-servicio").textContent = etiquetasServicio[servicioClave];
@@ -188,9 +189,9 @@ function seleccionarServicio(servicioClave) {
 function calcularYDesplegarPrecios() {
     const tipo = cotizacionCliente.tipoVehiculo;
     const servicio = cotizacionCliente.servicio;
-    
     const tierContainer = document.getElementById("tier-pricing-container");
     const dualContainer = document.getElementById("dual-pricing-container");
+    const singleContainer = document.getElementById("single-pricing-container"); // 🟢 AGREGADO
     const contextTitle = document.getElementById("context-service-title");
     const contextDesc = document.getElementById("context-service-desc");
     
@@ -215,6 +216,12 @@ function calcularYDesplegarPrecios() {
             titulo: "Solo Mano de Obra",
             freeInstall: "",
             descripcion: "Si ya compraste tus propias pastillas o discos y buscas únicamente instalación calificada."
+        },
+        // 🟢 AGREGADO
+        "rectificacion": {
+            titulo: "Solo Rectificación",
+            freeInstall: "",
+            descripcion: "Rectificación técnica de discos para eliminar vibraciones, ruidos y prolongar la vida útil de tus pastillas."
         }
     };
 
@@ -222,7 +229,6 @@ function calcularYDesplegarPrecios() {
     if (servicioActual) {
         contextTitle.textContent = servicioActual.titulo;
         contextDesc.textContent = servicioActual.descripcion;
-        
         const freeInstallEl = document.querySelector(".context-free-install");
         if (servicioActual.freeInstall) {
             freeInstallEl.textContent = servicioActual.freeInstall;
@@ -232,23 +238,30 @@ function calcularYDesplegarPrecios() {
         }
     }
 
+    // 🟢 REESTRUCTURACIÓN PARA MANEJAR LOS 3 TIPOS DE CONTENEDORES
+    tierContainer.classList.add("hidden");
+    dualContainer.classList.add("hidden");
+    singleContainer.classList.add("hidden");
+
     if (servicio === "mano_de_obra") {
-        tierContainer.classList.add("hidden");
         dualContainer.classList.remove("hidden");
-        
         const costosManoObra = datosTarifas[tipo]["mano_de_obra"];
         document.getElementById("price-dual-pastillas").textContent = costosManoObra.solo_pastillas;
         document.getElementById("price-dual-discos").textContent = costosManoObra.cambio_discos;
-    } else {
-        dualContainer.classList.add("hidden");
-        tierContainer.classList.remove("hidden");
         
+    } else if (servicio === "rectificacion") {
+        // 🟢 LÓGICA PARA RECTIFICACIÓN
+        singleContainer.classList.remove("hidden");
+        const precioRect = datosTarifas[tipo]["rectificacion"];
+        document.getElementById("price-single-rectificacion").textContent = precioRect;
+        
+    } else {
+        tierContainer.classList.remove("hidden");
         const bloqueTarifas = datosTarifas[tipo][servicio];
         
-        // 🟢 LÓGICA ACTUALIZADA PARA OFERTA EXCLUSIVA WEB
         const tarjetaExclusiva = document.getElementById("tier-EXCLUSIVA");
         const msgRestriccion = document.getElementById("restriction-exclusiva-msg");
-
+        
         if (bloqueTarifas.EXCLUSIVA_WEB === null) {
             tarjetaExclusiva.classList.add("restricted");
             msgRestriccion.classList.remove("hidden");
@@ -256,11 +269,8 @@ function calcularYDesplegarPrecios() {
             tarjetaExclusiva.classList.remove("restricted");
             msgRestriccion.classList.add("hidden");
             document.getElementById("price-exclusiva-val").textContent = bloqueTarifas.EXCLUSIVA_WEB;
-            const precioEstandar = bloqueTarifas.ESTANDAR;
             const originalSpan = document.getElementById("precio-original-exclusiva");
-            if (originalSpan) {
-                originalSpan.textContent = `$${precioEstandar}`;
-            }
+            if (originalSpan) originalSpan.textContent = `$${bloqueTarifas.ESTANDAR}`;
         }
         
         document.getElementById("price-estandar-val").textContent = bloqueTarifas.ESTANDAR;
@@ -317,50 +327,53 @@ function cerrarModalMatricula() {
 function finalizarCotizacion(nivelElegido) {
     const tipo = cotizacionCliente.tipoVehiculo;
     const servicio = cotizacionCliente.servicio;
-    
-    // 1. Obtenemos el precio exacto según la elección del cliente
     let precioSeleccionado = 0;
+
     if (servicio === "mano_de_obra") {
         if (nivelElegido.includes("Solo Pastillas")) {
             precioSeleccionado = datosTarifas[tipo]["mano_de_obra"].solo_pastillas;
         } else if (nivelElegido.includes("Instalación Completa")) {
             precioSeleccionado = datosTarifas[tipo]["mano_de_obra"].cambio_discos;
         }
+    } else if (servicio === "rectificacion") {
+        // 🟢 AGREGADO
+        precioSeleccionado = datosTarifas[tipo]["rectificacion"];
     } else {
-        // 🟢 Mapeo actualizado para la nueva etiqueta "Oferta Web"
-        const mapaNiveles = { 
-            "Estándar": "ESTANDAR", 
-            "Premium": "PREMIUM", 
-            "Oferta Web": "EXCLUSIVA_WEB" 
+        const mapaNiveles = {
+            "Estándar": "ESTANDAR",
+            "Premium": "PREMIUM",
+            "Oferta Web": "EXCLUSIVA_WEB"
         };
         const claveNivel = mapaNiveles[nivelElegido];
         precioSeleccionado = datosTarifas[tipo][servicio][claveNivel];
     }
 
-    // 2. Armamos el nombre completo del vehículo
     const nombreVehiculo = cotizacionCliente.modelo ? 
         `${cotizacionCliente.marca} ${cotizacionCliente.modelo}` : 
         cotizacionCliente.marca;
 
-    // 3. Mapeamos el servicio a un nombre comercial legible
     const nombresServicio = {
         'calidad_pastillas': 'Pastillas Nuevas',
         'servicio_integral': 'Servicio Integral',
-        'mano_de_obra': 'Solo Mano de Obra'
+        'mano_de_obra': 'Solo Mano de Obra',
+        'rectificacion': 'Solo Rectificación' // 🟢 AGREGADO
     };
 
-    // 4. Construimos el mensaje estructurado
     let mensaje = `¡Hola! 👋 He generado una cotización en la Web App y quiero agendar mi cita.`;
     mensaje += `\n🚗 *Vehículo:* ${nombreVehiculo}`;
     mensaje += `\n🔧 *Servicio:* ${nombresServicio[servicio]}`;
-    mensaje += `\n⭐ *Nivel elegido:* ${nivelElegido}`;
-    mensaje += `\n💵 *Precio referencial:* $${precioSeleccionado} + IVA`;
+    
+    // 🟢 AJUSTE MENOR: Si es rectificación, no tiene "Nivel" (Estándar/Premium), así que lo adaptamos
+    if (servicio === "rectificacion") {
+        mensaje += `\n💵 *Precio referencial:* $${precioSeleccionado} + IVA`;
+    } else {
+        mensaje += `\n⭐ *Nivel elegido:* ${nivelElegido}`;
+        mensaje += `\n💵 *Precio referencial:* $${precioSeleccionado} + IVA`;
+    }
+    
     mensaje += `\n¿Tienen disponibilidad para atenderme?`;
 
-    // 5. Generamos la URL oficial de WhatsApp
     const urlWhatsApp = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
-
-    // 6. Abrimos WhatsApp de forma nativa
     const link = document.createElement('a');
     link.href = urlWhatsApp;
     link.target = '_blank';
@@ -464,7 +477,8 @@ function actualizarBarraEstado() {
         const nombresComerciales = {
             'calidad_pastillas': 'Pastillas Nuevas',
             'servicio_integral': 'Servicio Integral',
-            'mano_de_obra': 'Solo Mano de Obra'
+            'mano_de_obra': 'Solo Mano de Obra',
+            'rectificacion': 'Solo Rectificación'
         };
         txtServicio.textContent = nombresComerciales[cotizacionCliente.servicio] || cotizacionCliente.servicio;
         btnServicio.style.opacity = "1";
@@ -514,7 +528,8 @@ function actualizarEnlaceWhatsApp() {
         const nombresServicio = {
             'calidad_pastillas': 'Pastillas Nuevas',
             'servicio_integral': 'Servicio Integral',
-            'mano_de_obra': 'Solo Mano de Obra'
+            'mano_de_obra': 'Solo Mano de Obra',
+            'rectificacion': 'Solo Rectificación'
         };
         mensajeFinal += `\n🔧 *Servicio de interés:* ${nombresServicio[cotizacionCliente.servicio]}`;
     }

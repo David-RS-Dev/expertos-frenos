@@ -2,26 +2,31 @@
   "Auto pequeno": {
     "calidad_pastillas": { "EXCLUSIVA_WEB": 25, "ESTANDAR": 35, "PREMIUM": 90 },
     "servicio_integral": { "EXCLUSIVA_WEB": 45, "ESTANDAR": 55, "PREMIUM": 110 },
-    "mano_de_obra": { "solo_pastillas": 10, "cambio_discos": 15 }
+    "mano_de_obra": { "solo_pastillas": 10, "cambio_discos": 15 },
+    "rectificacion": 35
   },
   "Sedan mediano": {
     "calidad_pastillas": { "EXCLUSIVA_WEB": 35, "ESTANDAR": 55, "PREMIUM": 105 },
     "servicio_integral": { "EXCLUSIVA_WEB": 60, "ESTANDAR": 80, "PREMIUM": 130 },
-    "mano_de_obra": { "solo_pastillas": 15, "cambio_discos": 20 }
+    "mano_de_obra": { "solo_pastillas": 15, "cambio_discos": 20 },
+    "rectificacion": 45
   },
   "SUV/ Camioneta mediana": {
     "calidad_pastillas": { "EXCLUSIVA_WEB": 45, "ESTANDAR": 65, "PREMIUM": 125 },
     "servicio_integral": { "EXCLUSIVA_WEB": 75, "ESTANDAR": 95, "PREMIUM": 155 },
-    "mano_de_obra": { "solo_pastillas": 20, "cambio_discos": 25 }
+    "mano_de_obra": { "solo_pastillas": 20, "cambio_discos": 25 },
+    "rectificacion": 55
   },
   "SUV grande/ Pickup": {
     "calidad_pastillas": { "EXCLUSIVA_WEB": 55, "ESTANDAR": 75, "PREMIUM": 155 },
     "servicio_integral": { "EXCLUSIVA_WEB": 90, "ESTANDAR": 110, "PREMIUM": 190 },
-    "mano_de_obra": { "solo_pastillas": 25, "cambio_discos": 30 }
+    "mano_de_obra": { "solo_pastillas": 25, "cambio_discos": 30 },
+    "rectificacion": 65
   },
   "Vehiculo premium": {
     "calidad_pastillas": { "EXCLUSIVA_WEB": 145, "ESTANDAR": 195, "PREMIUM": 195 },
     "servicio_integral": { "EXCLUSIVA_WEB": 225, "ESTANDAR": 275, "PREMIUM": 275 },
-    "mano_de_obra": { "solo_pastillas": 40, "cambio_discos": 50 }
+    "mano_de_obra": { "solo_pastillas": 40, "cambio_discos": 50 },
+    "rectificacion": 130
   }
 }
