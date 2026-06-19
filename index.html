@@ -1,4 +1,3 @@
-<!-- ARCHIVO: index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -42,7 +41,6 @@
 </div>
 </div>
 </div>
-
 <!-- PASO 1: BÚSQUEDA DE VEHÍCULO -->
 <section id="step-1" class="wizard-step active">
 <div class="step-instruction">
@@ -106,7 +104,6 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </div>
 </div>
 </section>
-
 <!-- PASO 2: SELECCIÓN DE SERVICIO -->
 <section id="step-2" class="wizard-step">
 <div class="step-instruction">
@@ -132,6 +129,15 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </div>
 <div class="service-arrow"><i class="fa-solid fa-chevron-right"></i></div>
 </button>
+<!-- 🟢 NUEVA TARJETA: SOLO RECTIFICACIÓN -->
+<button class="service-selection-card" onclick="seleccionarServicio('rectificacion')">
+<div class="service-icon"><i class="fa-solid fa-compact-disc"></i></div>
+<div class="service-details">
+<h4>Solo Rectificación</h4>
+<p>Rectificación técnica de discos para eliminar vibraciones y ruidos.</p>
+</div>
+<div class="service-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+</button>
 <button class="service-selection-card" onclick="seleccionarServicio('mano_de_obra')">
 <div class="service-icon"><i class="fa-solid fa-hand-holding-wrench"></i></div>
 <div class="service-details">
@@ -142,7 +148,6 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </button>
 </div>
 </section>
-
 <!-- PASO 3: COTIZACIÓN GOOD-BETTER-BEST -->
 <section id="step-3" class="wizard-step">
 <div id="service-context-card" class="service-context-card">
@@ -181,7 +186,6 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </div>
 <button class="btn-select-tier btn-premium" onclick="finalizarCotizacion('Premium')">Seleccionar Premium</button>
 </div>
-
 <!-- 🟢 TARJETA ACTUALIZADA: OFERTA EXCLUSIVA WEB -->
 <div class="tier-card" id="tier-EXCLUSIVA">
 <div class="tier-badge exclusiva-badge"><i class="fa-solid fa-gift"></i> Oferta Web</div>
@@ -198,7 +202,6 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </div>
 <button class="btn-select-tier btn-exclusiva" onclick="finalizarCotizacion('Oferta Web')">Elegir Oferta Web</button>
 </div>
-
 </div>
 <div id="dual-pricing-container" class="pricing-dual-list hidden">
 <div class="dual-option-card">
@@ -222,12 +225,22 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <button class="btn-secondary" onclick="finalizarCotizacion('Mano de obra - Instalación Completa')">Seleccionar</button>
 </div>
 </div>
+<!-- 🟢 NUEVO CONTENEDOR: PRECIO ÚNICO PARA RECTIFICACIÓN -->
+<div id="single-pricing-container" class="single-pricing-card hidden">
+<div class="single-option-info">
+<h4><i class="fa-solid fa-compact-disc"></i> Rectificación de Discos</h4>
+<p>Servicio de rectificación técnica para eliminar vibraciones, ruidos y prolongar la vida útil de tus pastillas.</p>
+</div>
+<div class="single-option-cost">
+<span>$</span><span id="price-single-rectificacion">00</span> <small>+ IVA</small>
+</div>
+<button class="btn-primary-block" onclick="finalizarCotizacion('Solo Rectificación')">Agendar Rectificación</button>
+</div>
 <footer class="pricing-disclaimer">
 <p><i class="fa-solid fa-circle-info"></i> Los precios mostrados no incluyen el valor legal del IVA vigente y están sujetos a verificación física de las condiciones del vehículo en los patios del taller.</p>
 </footer>
 </section>
 </div>
-
 <!-- MODAL DE GUÍA DE MATRÍCULA -->
 <div id="matricula-modal" class="modal-backdrop hidden">
 <div class="modal-content">
@@ -258,13 +271,11 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </div>
 </div>
 </div>
-
 <!-- 🟢 BOTÓN FLOTANTE DE WHATSAPP -->
 <a href="https://wa.me/593962059311" target="_blank" rel="noopener noreferrer" id="whatsapp-float-btn" class="whatsapp-float" aria-label="Contactar por WhatsApp">
 <i class="fa-brands fa-whatsapp"></i>
 <span class="whatsapp-tooltip">¿Dudas? Escríbenos</span>
 </a>
-
 <!-- TOAST DE SALIDA -->
 <div id="toast-exit" class="toast-container hidden">
 <span>Presiona atrás de nuevo para salir</span>

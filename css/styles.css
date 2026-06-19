@@ -900,3 +900,53 @@ bottom: 16px;
 right: 14px;
 }
 }
+
+/* ==========================================================================
+14. 🟢 TARJETA DE PRECIO ÚNICO (SOLO RECTIFICACIÓN)
+========================================================================== */
+.single-pricing-card {
+    background-color: var(--card-bg);
+    border: 2px solid var(--accent-color);
+    border-radius: var(--radius);
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 4px 12px rgba(49, 151, 149, 0.1);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.single-option-info h4 {
+    font-size: 16px;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.single-option-info p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.single-option-cost {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent-color);
+    display: flex;
+    align-items: baseline;
+}
+
+.single-option-cost span:first-child {
+    font-size: 20px;
+    margin-right: 2px;
+}
+
+.single-option-cost small {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-left: 4px;
+}
