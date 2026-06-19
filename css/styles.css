@@ -1,952 +1,902 @@
+/* ARCHIVO: css/styles.css */
 /* ==========================================================================
-   1. VARIABLES, RESETEO Y ESTILOS BASE
-   ========================================================================== */
+1. VARIABLES, RESETEO Y ESTILOS BASE
+========================================================================== */
 :root {
-    --primary-color: #1a365d;       /* Azul corporativo profundo */
-    --secondary-color: #2b6cb0;     /* Azul interactivo */
-    --accent-color: #319795;        /* Verde turquesa para destacar */
-    --urbano-color: #718096;        /* Gris para la opción económica */
-    --premium-color: #b7791f;       /* Dorado/Bronce para alta gama */
-    --bg-app: #f7fafc;              /* Fondo gris ultra claro texturizado */
-    --card-bg: #ffffff;             /* Fondo de tarjetas */
-    --text-main: #2d3748;           /* Texto principal legible */
-    --text-muted: #718096;          /* Texto secundario */
-    --border-color: #e2e8f0;        /* Bordes suaves */
-    --radius: 12px;                 /* Esquinas redondeadas modernas */
-    --transition: all 0.25s ease;
+--primary-color: #1a365d;
+--secondary-color: #2b6cb0;
+--accent-color: #319795;
+--exclusiva-color: #d53f8c; /* 🟢 Nuevo color para Oferta Exclusiva Web */
+--premium-color: #b7791f;
+--bg-app: #f7fafc;
+--card-bg: #ffffff;
+--text-main: #2d3748;
+--text-muted: #718096;
+--border-color: #e2e8f0;
+--radius: 12px;
+--transition: all 0.25s ease;
+--whatsapp-color: #25D366;
+--whatsapp-dark: #128C7E;
 }
-
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: transparent; /* Elimina el destello azul en móviles */
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+-webkit-tap-highlight-color: transparent;
 }
-
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #e2e8f0; /* Fondo externo simulando entorno de escritorio */
-    color: var(--text-main);
-    line-height: 1.5;
-    display: flex;
-    justify-content: center;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+background-color: #e2e8f0;
+color: var(--text-main);
+line-height: 1.5;
+display: flex;
+justify-content: center;
 }
-
-/* Contenedor tipo "App de Celular" para pruebas y producción en Vercel */
 .app-container {
-    width: 100%;
-    max-width: 480px; /* Ancho estándar de un teléfono móvil grande */
-    min-height: 100vh;
-    background-color: var(--bg-app);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    padding-bottom: 40px;
+width: 100%;
+max-width: 480px;
+min-height: 100vh;
+background-color: var(--bg-app);
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+display: flex;
+flex-direction: column;
+position: relative;
+padding-bottom: 40px;
 }
 
 /* ==========================================================================
-   2. ENCABEZADO Y BARRA DE ESTADO INTERACTIVA (WIZARD)
-   ========================================================================== */
+2. ENCABEZADO Y BARRA DE ESTADO INTERACTIVA (WIZARD)
+========================================================================== */
 .app-header {
-    background-color: var(--card-bg);
-    padding: 16px;
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+background-color: var(--card-bg);
+padding: 16px;
+border-bottom: 1px solid var(--border-color);
+position: sticky;
+top: 0;
+z-index: 100;
 }
-
 .logo-zone h2 {
-    font-size: 16px;
-    color: var(--primary-color);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
+font-size: 16px;
+color: var(--primary-color);
+text-transform: uppercase;
+letter-spacing: 0.5px;
+margin-bottom: 12px;
 }
-
-.logo-zone i {
-    margin-right: 6px;
-}
-
-/* Barra de progreso secuencial */
+.logo-zone i { margin-right: 6px; }
 .wizard-progress-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+display: flex;
+align-items: center;
+justify-content: space-between;
 }
-
 .step-indicator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    flex: 1;
-    opacity: 0.5;
-    transition: var(--transition);
+display: flex;
+flex-direction: column;
+align-items: center;
+cursor: pointer;
+flex: 1;
+opacity: 0.5;
+transition: var(--transition);
 }
-
-.step-indicator.active {
-    opacity: 1;
-}
-
+.step-indicator.active { opacity: 1; }
 .step-icon {
-    width: 36px;
-    height: 36px;
-    background-color: var(--bg-app);
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 4px;
-    transition: var(--transition);
+width: 36px;
+height: 36px;
+background-color: var(--bg-app);
+border: 2px solid var(--border-color);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 14px;
+color: var(--text-muted);
+margin-bottom: 4px;
+transition: var(--transition);
 }
-
 .step-indicator.active .step-icon {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    color: #ffffff;
+background-color: var(--secondary-color);
+border-color: var(--secondary-color);
+color: #ffffff;
 }
-
 .step-text {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-muted);
-    max-width: 75px;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+font-size: 11px;
+font-weight: 600;
+color: var(--text-muted);
+max-width: 75px;
+text-align: center;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
-
-.step-indicator.active .step-text {
-    color: var(--secondary-color);
-}
-
+.step-indicator.active .step-text { color: var(--secondary-color); }
 .step-divider {
-    height: 2px;
-    background-color: var(--border-color);
-    flex: 0.5;
-    margin-bottom: 18px;
+height: 2px;
+background-color: var(--border-color);
+flex: 0.5;
+margin-bottom: 18px;
 }
 
 /* ==========================================================================
-   3. ELEMENTOS DE CONTROL, BOTONES Y TARJETAS
-   ========================================================================== */
+3. ELEMENTOS DE CONTROL, BOTONES Y TARJETAS
+========================================================================== */
 .wizard-step {
-    display: none; /* Oculta los pasos por defecto */
-    padding: 20px 16px;
-    animation: fadeIn 0.3s ease-in-out;
+display: none;
+padding: 20px 16px;
+animation: fadeIn 0.3s ease-in-out;
 }
-
-.wizard-step.active {
-    display: block; /* Muestra solo el paso activo controlado por JS */
-}
-
+.wizard-step.active { display: block; }
 .step-instruction h3 {
-    font-size: 18px;
-    color: var(--primary-color);
-    margin-bottom: 6px;
+font-size: 18px;
+color: var(--primary-color);
+margin-bottom: 6px;
 }
-
 .step-instruction p {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 20px;
+font-size: 14px;
+color: var(--text-muted);
+margin-bottom: 20px;
 }
-
-/* Botones genéricos de gran tamaño táctil */
 button {
-    font-family: inherit;
-    border: none;
-    cursor: pointer;
-    border-radius: var(--radius);
-    font-weight: 600;
-    font-size: 15px;
-    transition: var(--transition);
+font-family: inherit;
+border: none;
+cursor: pointer;
+border-radius: var(--radius);
+font-weight: 600;
+font-size: 15px;
+transition: var(--transition);
 }
-
 .btn-primary-block {
-    width: 100%;
-    background-color: var(--secondary-color);
-    color: #ffffff;
-    padding: 14px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(43, 108, 176, 0.2);
+width: 100%;
+background-color: var(--secondary-color);
+color: #ffffff;
+padding: 14px;
+text-align: center;
+box-shadow: 0 4px 12px rgba(43, 108, 176, 0.2);
 }
-
 .btn-primary-block:active {
-    transform: scale(0.98);
-    background-color: var(--primary-color);
+transform: scale(0.98);
+background-color: var(--primary-color);
 }
-
 .btn-secondary {
-    width: 100%;
-    background-color: #edf2f7;
-    color: var(--secondary-color);
-    padding: 12px;
-    border: 1px solid var(--border-color);
+width: 100%;
+background-color: #edf2f7;
+color: var(--secondary-color);
+padding: 12px;
+border: 1px solid var(--border-color);
 }
-
-.btn-secondary:active {
-    background-color: #e2e8f0;
-}
-
+.btn-secondary:active { background-color: #e2e8f0; }
 .btn-text {
-    background: none;
-    color: var(--secondary-color);
-    font-size: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+background: none;
+color: var(--secondary-color);
+font-size: 14px;
+display: inline-flex;
+align-items: center;
+gap: 6px;
 }
 
 /* ==========================================================================
-   4. MODULO 1: BUSCADOR PREDICTIVO Y ASISTENCIA (PASO 1)
-   ========================================================================== */
+4. MODULO 1: BUSCADOR PREDICTIVO Y ASISTENCIA (PASO 1)
+========================================================================== */
 .search-card, .helper-card {
-    background-color: var(--card-bg);
-    border-radius: var(--radius);
-    padding: 16px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+background-color: var(--card-bg);
+border-radius: var(--radius);
+padding: 16px;
+border: 1px solid var(--border-color);
+margin-bottom: 16px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.02);
 }
-
 .search-card h4, .helper-card h4 {
-    font-size: 14px;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+font-size: 14px;
+color: var(--primary-color);
+margin-bottom: 10px;
+display: flex;
+align-items: center;
+gap: 8px;
 }
-
 .input-group {
-    position: relative;
-    display: flex;
-    align-items: center;
+position: relative;
+display: flex;
+align-items: center;
 }
-
 .input-group input {
-    width: 100%;
-    padding: 14px 40px 14px 14px;
-    font-size: 15px;
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius);
-    outline: none;
-    color: var(--text-main);
-    transition: var(--transition);
+width: 100%;
+padding: 14px 40px 14px 14px;
+font-size: 15px;
+border: 2px solid var(--border-color);
+border-radius: var(--radius);
+outline: none;
+color: var(--text-main);
+transition: var(--transition);
 }
-
-.input-group input:focus {
-    border-color: var(--secondary-color);
-}
-
+.input-group input:focus { border-color: var(--secondary-color); }
 #clear-search-btn {
-    position: absolute;
-    right: 12px;
-    background: none;
-    color: var(--text-muted);
-    font-size: 18px;
+position: absolute;
+right: 12px;
+background: none;
+color: var(--text-muted);
+font-size: 18px;
 }
-
-/* Desplegable predictivo (Resultados) */
 .suggestions-list {
-    list-style: none;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-top: none;
-    border-radius: 0 0 var(--radius) var(--radius);
-    max-height: 220px;
-    overflow-y: auto;
-    margin-top: -4px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+list-style: none;
+background-color: var(--card-bg);
+border: 1px solid var(--border-color);
+border-top: none;
+border-radius: 0 0 var(--radius) var(--radius);
+max-height: 220px;
+overflow-y: auto;
+margin-top: -4px;
+box-shadow: 0 8px 16px rgba(0,0,0,0.08);
 }
-
 .suggestions-list li {
-    padding: 14px;
-    font-size: 15px;
-    border-bottom: 1px solid var(--bg-app);
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+padding: 14px;
+font-size: 15px;
+border-bottom: 1px solid var(--bg-app);
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
-
-.suggestions-list li:active {
-    background-color: #f0f4f8;
-}
-
+.suggestions-list li:active { background-color: #f0f4f8; }
 .suggestions-list li span.badge-tipo {
-    font-size: 11px;
-    background-color: #edf2f7;
-    color: var(--text-muted);
-    padding: 2px 6px;
-    border-radius: 4px;
+font-size: 11px;
+background-color: #edf2f7;
+color: var(--text-muted);
+padding: 2px 6px;
+border-radius: 4px;
 }
-
 .contingency-trigger {
-    text-align: center;
-    margin: 24px 0 12px 0;
+text-align: center;
+margin: 24px 0 12px 0;
 }
-
 .contingency-trigger p {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 4px;
+font-size: 13px;
+color: var(--text-muted);
+margin-bottom: 4px;
 }
 
 /* ==========================================================================
-   5. CONTINGENCIA VISUAL POR SILUETAS (BOTONES GRANDES)
-   ========================================================================== */
+5. CONTINGENCIA VISUAL POR SILUETAS (BOTONES GRANDES)
+========================================================================== */
 .section-divider {
-    border: 0;
-    height: 1px;
-    background-color: var(--border-color);
-    margin: 20px 0;
+border: 0;
+height: 1px;
+background-color: var(--border-color);
+margin: 20px 0;
 }
-
 .contingency-container h4 {
-    font-size: 14px;
-    color: var(--text-main);
-    margin-bottom: 14px;
+font-size: 14px;
+color: var(--text-main);
+margin-bottom: 14px;
 }
-
 .contingency-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 16px;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
+margin-bottom: 16px;
 }
-
 .silhouette-card {
-    background-color: var(--card-bg);
-    border: 2px solid var(--border-color);
-    padding: 16px 10px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+background-color: var(--card-bg);
+border: 2px solid var(--border-color);
+padding: 16px 10px;
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
 }
-
 .silhouette-card:active, .silhouette-card.selected {
-    border-color: var(--secondary-color);
-    background-color: #f0f4f8;
+border-color: var(--secondary-color);
+background-color: #f0f4f8;
 }
-
-.car-emoji {
-    font-size: 28px;
-    margin-bottom: 6px;
-}
-
+.car-emoji { font-size: 28px; margin-bottom: 6px; }
 .silhouette-card h5 {
-    font-size: 13px;
-    color: var(--primary-color);
-    margin-bottom: 4px;
+font-size: 13px;
+color: var(--primary-color);
+margin-bottom: 4px;
 }
-
 .silhouette-card p {
-    font-size: 11px;
-    color: var(--text-muted);
+font-size: 11px;
+color: var(--text-muted);
 }
-
-/* El elemento Premium ocupa todo el ancho horizontal de la rejilla */
 .premium-silhouette {
-    grid-column: span 2;
-    border-color: #ebd5b3;
+grid-column: span 2;
+border-color: #ebd5b3;
 }
 .premium-silhouette:active, .premium-silhouette.selected {
-    border-color: var(--premium-color);
-    background-color: #fffaf0;
+border-color: var(--premium-color);
+background-color: #fffaf0;
 }
-
 .manual-input-row {
-    background-color: var(--card-bg);
-    padding: 14px;
-    border-radius: var(--radius);
-    border: 1px solid var(--border-color);
-    margin-top: 16px;
+background-color: var(--card-bg);
+padding: 14px;
+border-radius: var(--radius);
+border: 1px solid var(--border-color);
+margin-top: 16px;
 }
-
 .manual-input-row label {
-    font-size: 13px;
-    font-weight: 600;
-    display: block;
-    margin-bottom: 6px;
+font-size: 13px;
+font-weight: 600;
+display: block;
+margin-bottom: 6px;
 }
-
 .manual-input-row input {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    margin-bottom: 12px;
+width: 100%;
+padding: 10px;
+font-size: 14px;
+border: 1px solid var(--border-color);
+border-radius: 6px;
+margin-bottom: 12px;
 }
 
 /* ==========================================================================
-   6. SELECCIÓN DE SERVICIOS (PASO 2)
-   ========================================================================== */
+6. SELECCIÓN DE SERVICIOS (PASO 2)
+========================================================================== */
 .services-vertical-list {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+display: flex;
+flex-direction: column;
+gap: 14px;
 }
-
 .service-selection-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    text-align: left;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+background-color: var(--card-bg);
+border: 1px solid var(--border-color);
+padding: 16px;
+display: flex;
+align-items: center;
+text-align: left;
+box-shadow: 0 2px 6px rgba(0,0,0,0.01);
 }
-
 .service-selection-card:active {
-    border-color: var(--secondary-color);
-    background-color: #f0f4f8;
+border-color: var(--secondary-color);
+background-color: #f0f4f8;
 }
-
 .service-icon {
-    font-size: 24px;
-    color: var(--secondary-color);
-    width: 44px;
+font-size: 24px;
+color: var(--secondary-color);
+width: 44px;
 }
-
-.service-details {
-    flex: 1;
-    padding: 0 10px;
-}
-
+.service-details { flex: 1; padding: 0 10px; }
 .service-details h4 {
-    font-size: 15px;
-    color: var(--primary-color);
-    margin-bottom: 2px;
+font-size: 15px;
+color: var(--primary-color);
+margin-bottom: 2px;
 }
-
 .service-details p {
-    font-size: 12px;
-    color: var(--text-muted);
+font-size: 12px;
+color: var(--text-muted);
 }
-
 .service-arrow {
-    color: var(--border-color);
-    font-size: 14px;
+color: var(--border-color);
+font-size: 14px;
 }
 
 /* ==========================================================================
-   7. PANTALLA COMERCIAL: TERNA GOOD-BETTER-BEST (PASO 3)
-   ========================================================================== */
+7. PANTALLA COMERCIAL: TERNA GOOD-BETTER-BEST (PASO 3)
+========================================================================== */
 .pricing-tiers-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+display: flex;
+flex-direction: column;
+gap: 16px;
 }
-
 .tier-card {
-    background-color: var(--card-bg);
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius);
-    padding: 20px 16px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+background-color: var(--card-bg);
+border: 2px solid var(--border-color);
+border-radius: var(--radius);
+padding: 20px 16px;
+position: relative;
+display: flex;
+flex-direction: column;
+box-shadow: 0 4px 10px rgba(0,0,0,0.02);
 }
-
-.tier-card h4 {
-    font-size: 16px;
-    margin-top: 6px;
-}
-
+.tier-card h4 { font-size: 16px; margin-top: 6px; }
 .tier-desc {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin: 6px 0 14px 0;
+font-size: 12px;
+color: var(--text-muted);
+margin: 6px 0 14px 0;
 }
-
 .tier-price {
-    margin-bottom: 16px;
-    display: flex;
-    align-items: baseline;
+margin-bottom: 16px;
+display: flex;
+align-items: baseline;
 }
-
 .tier-price .currency {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-main);
+font-size: 18px;
+font-weight: 700;
+color: var(--text-main);
 }
-
 .tier-price .amount {
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--text-main);
-    line-height: 1;
-    margin: 0 2px;
+font-size: 32px;
+font-weight: 800;
+color: var(--text-main);
+line-height: 1;
+margin: 0 2px;
 }
-
 .tier-price .tax-tag {
-    font-size: 12px;
-    color: var(--text-muted);
-    font-weight: 600;
+font-size: 12px;
+color: var(--text-muted);
+font-weight: 600;
 }
-
 .btn-select-tier {
-    width: 100%;
-    padding: 12px;
-    background-color: #edf2f7;
-    color: var(--text-main);
-    font-size: 14px;
+width: 100%;
+padding: 12px;
+background-color: #edf2f7;
+color: var(--text-main);
+font-size: 14px;
 }
-
-/* Badges decorativas de nivel */
 .tier-badge {
-    position: absolute;
-    top: -10px;
-    right: 16px;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 10px;
-    border-radius: 20px;
-    color: #ffffff;
+position: absolute;
+top: -10px;
+right: 16px;
+font-size: 11px;
+font-weight: 700;
+padding: 2px 10px;
+border-radius: 20px;
+color: #ffffff;
+display: flex;
+align-items: center;
+gap: 4px;
 }
-.urbano-badge { background-color: var(--urbano-color); }
+.exclusiva-badge { background-color: var(--exclusiva-color); }
 .estandar-badge { background-color: var(--accent-color); }
 .premium-badge { background-color: var(--premium-color); }
 
-/* PSICOLOGÍA DE CONSUMIDOR: RESALTADO DE LA OPCIÓN ESTÁNDAR (BETTER) */
 .tier-card.featured-tier {
-    border-color: var(--accent-color);
-    background-color: #f0fff4; /* Fondo sutilmente verdoso/limpio */
-    transform: scale(1.02); /* Efecto visual de jerarquía */
-    box-shadow: 0 6px 16px rgba(49, 151, 149, 0.15);
+border-color: var(--accent-color);
+background-color: #f0fff4;
+transform: scale(1.02);
+box-shadow: 0 6px 16px rgba(49, 151, 149, 0.15);
 }
-
-.tier-card.featured-tier h4 {
-    color: #234e52;
-}
-
+.tier-card.featured-tier h4 { color: #234e52; }
 .btn-featured {
-    background-color: var(--accent-color);
-    color: #ffffff;
-    box-shadow: 0 4px 10px rgba(49, 151, 149, 0.3);
+background-color: var(--accent-color);
+color: #ffffff;
+box-shadow: 0 4px 10px rgba(49, 151, 149, 0.3);
 }
-
-.btn-featured:active {
-    background-color: #234e52;
-}
+.btn-featured:active { background-color: #234e52; }
 
 .btn-premium {
-    background-color: var(--premium-color); /* #b7791f */
-    color: #ffffff;
-    box-shadow: 0 4px 10px rgba(183, 121, 31, 0.25);
+background-color: var(--premium-color);
+color: #ffffff;
+box-shadow: 0 4px 10px rgba(183, 121, 31, 0.25);
 }
 .btn-premium:active {
-    background-color: #975a16; /* Tono más oscuro al presionar */
-    transform: scale(0.98);
+background-color: #975a16;
+transform: scale(0.98);
 }
 
-.btn-urbano {
-    background-color: #ffffff;
-    color: var(--urbano-color); /* #718096 */
-    border: 2px solid var(--urbano-color);
-    box-shadow: none;
+/* 🟢 ESTILOS PARA OFERTA EXCLUSIVA WEB */
+.btn-exclusiva {
+background-color: #ffffff;
+color: var(--exclusiva-color);
+border: 2px solid var(--exclusiva-color);
+box-shadow: none;
 }
-.btn-urbano:active {
-    background-color: #f7fafc;
-    transform: scale(0.98);
+.btn-exclusiva:active {
+background-color: #fff5f7;
+transform: scale(0.98);
+}
+
+#tier-EXCLUSIVA {
+    border-color: var(--exclusiva-color);
+    background: linear-gradient(135deg, #fff5f7, #fdf2f8);
+}
+/* Color del título de la tarjeta Oferta Exclusiva Web */
+#tier-EXCLUSIVA h4 {
+    color: var(--exclusiva-color);
 }
 
 .tier-card.premium-tier-card {
-    border-color: var(--premium-color);   /* Borde dorado */
-    background-color: #fffaf0;            
-    box-shadow: 0 4px 12px rgba(183, 121, 31, 0.1); 
+border-color: var(--premium-color);
+background-color: #fffaf0;
+box-shadow: 0 4px 12px rgba(183, 121, 31, 0.1);
 }
+.tier-card.premium-tier-card h4 { color: var(--premium-color); }
 
-.tier-card.premium-tier-card h4 {
-    color: var(--premium-color);          /* Título combinado */
-}
-
-/* MANEJO DE LA RESTRICCIÓN PREMIUM (OCULTADO/BLOQUEO DE URBANO) */
 .tier-card.restricted {
-    opacity: 0.6;
-    border-color: #fed7d7;
-    background-color: #fff5f5;
+opacity: 0.6;
+border-color: #fed7d7;
+background-color: #fff5f5;
 }
-
 .tier-card.restricted .tier-price,
-.tier-card.restricted .btn-select-tier {
-    display: none; /* Oculta el precio y botón si está restringido */
-}
-
+.tier-card.restricted .btn-select-tier { display: none; }
 .restriction-msg {
-    color: #c53030;
-    font-size: 12px;
-    font-weight: 600;
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+color: #c53030;
+font-size: 12px;
+font-weight: 600;
+margin: 10px 0;
+display: flex;
+align-items: center;
+gap: 6px;
 }
-
-/* ESTRUCTURA DUAL (MANO DE OBRA) */
 .pricing-dual-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+display: flex;
+flex-direction: column;
+gap: 12px;
 }
-
 .dual-option-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+background-color: var(--card-bg);
+border: 1px solid var(--border-color);
+border-radius: var(--radius);
+padding: 16px;
+display: flex;
+flex-direction: column;
+gap: 12px;
 }
-
 .dual-option-cost {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--primary-color);
+font-size: 24px;
+font-weight: 800;
+color: var(--primary-color);
 }
 .dual-option-cost small {
-    font-size: 11px;
-    color: var(--text-muted);
-    font-weight: 400;
+font-size: 11px;
+color: var(--text-muted);
+font-weight: 400;
 }
-
 .pricing-disclaimer {
-    margin-top: 24px;
-    padding: 0 4px;
+margin-top: 24px;
+padding: 0 4px;
+}
+.pricing-disclaimer p {
+font-size: 11px;
+color: var(--text-muted);
+text-align: justify;
+}
+/* Precio original tachado para Oferta Exclusiva Web */
+.original-price {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    color: #a0aec0;
 }
 
-.pricing-disclaimer p {
-    font-size: 11px;
-    color: var(--text-muted);
-    text-align: justify;
+.original-price::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -5%;
+    width: 110%;
+    height: 2px;
+    background-color: var(--exclusiva-color);
+    transform: rotate(-8deg);   /* Ajusta el ángulo: negativo = sube de izquierda a derecha */
+    transform-origin: center;
+    pointer-events: none;
 }
 
 /* ==========================================================================
-   8. COMPONENTE MODAL (GUÍA DE MATRÍCULA DE ECUADOR) - OPTIMIZADO
-   ========================================================================== */
+8. COMPONENTE MODAL (GUÍA DE MATRÍCULA DE ECUADOR)
+========================================================================== */
 .modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(26, 32, 44, 0.6); /* Fondo oscurecido traslúcido */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    padding: 16px;
-    animation: fadeIn 0.2s ease-out;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(26, 32, 44, 0.6);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 1000;
+padding: 16px;
+animation: fadeIn 0.2s ease-out;
 }
-
 .modal-content {
-    background-color: var(--card-bg);
-    border-radius: var(--radius);
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    overflow: hidden;
+background-color: var(--card-bg);
+border-radius: var(--radius);
+width: 100%;
+max-width: 400px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+overflow: hidden;
 }
-
 .modal-header {
-    background-color: var(--primary-color);
-    color: #ffffff;
-    padding: 14px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+background-color: var(--primary-color);
+color: #ffffff;
+padding: 14px 16px;
+display: flex;
+justify-content: space-between;
+align-items: center;
 }
-
 .modal-header h4 {
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+font-size: 14px;
+font-weight: 600;
+display: flex;
+align-items: center;
+gap: 8px;
 }
-
 .close-modal-btn {
-    background: none;
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: 300;
+background: none;
+color: #ffffff;
+font-size: 24px;
+font-weight: 300;
 }
-
-.modal-body {
-    padding: 16px;
-}
-
+.modal-body { padding: 16px; }
 .modal-body p {
-    font-size: 13px;
-    color: var(--text-main);
-    margin-bottom: 14px;
+font-size: 13px;
+color: var(--text-main);
+margin-bottom: 14px;
 }
-
-/* Contenedor general de las cápsulas informativas */
 .campos-guia-lista {
-    margin-bottom: 12px; 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 8px;
+margin-bottom: 12px;
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
 }
-
-/* Estilo para las etiquetas de los campos guía en bloque horizontal */
 .blueprint-row.highlight-field {
-    background-color: #ebf5ea; /* Resaltado amarillo tipo marcador */
-    border-left: 3px solid #8d2f2d;
-    padding: 6px 10px;
-    font-size: 11px;
-    border-radius: 4px;
-    display: inline-flex; /* Cambiado a inline-flex para alinear el número perfectamente con el texto */
-    align-items: center;
-    gap: 6px; /* Separación interna entre el círculo numérico y el texto */
-    font-weight: bold;
+background-color: #ebf5ea;
+border-left: 3px solid #8d2f2d;
+padding: 6px 10px;
+font-size: 11px;
+border-radius: 4px;
+display: inline-flex;
+align-items: center;
+gap: 6px;
+font-weight: bold;
 }
-
-/* El círculo indicador con los colores de la matrícula de Ecuador (Fondo Verde, Número Rojo) */
 .num-indicador {
-    background-color: #00ff18; /* Verde esmeralda */
-    color: #8d2f2d;            /* Rojo brillante */
-    font-weight: 900;          /* Texto grueso */
-    font-size: 11px;
-    width: 18px;               /* Ancho del círculo */
-    height: 18px;              /* Alto del círculo */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;        
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+background-color: #00ff18;
+color: #8d2f2d;
+font-weight: 900;
+font-size: 11px;
+width: 18px;
+height: 18px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 4px;
+box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-
-/* Contenedor adaptado para permitir desplazamiento táctil al ampliar */
 .matricula-image-container {
-    width: 100%;
-    max-height: 220px; /* Evita que empuje el botón del modal fuera de la pantalla */
-    margin: 12px 0;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: #f7fafc;
-    overflow: auto; /* ACTIVA EL SCROLL: Permite arrastrar con el dedo al ampliar */
-    -webkit-overflow-scrolling: touch; /* Desplazamiento fluido táctil en iOS Safari */
+width: 100%;
+max-height: 220px;
+margin: 12px 0;
+border: 1px solid var(--border-color);
+border-radius: 8px;
+background-color: #f7fafc;
+overflow: auto;
+-webkit-overflow-scrolling: touch;
 }
-
-/* Imagen base fluida */
 .matricula-guia-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-    cursor: zoom-in; /* Lupa con signo + */
-    transform-origin: top left; /* Eje en la esquina para evitar cortes extraños */
-    transition: transform 0.3s ease, width 0.3s ease, cursor 0.3s ease;
+width: 100%;
+height: auto;
+display: block;
+object-fit: contain;
+cursor: zoom-in;
+transform-origin: top left;
+transition: transform 0.3s ease, width 0.3s ease, cursor 0.3s ease;
 }
-
-/* Estado ampliado: forzamos a que crezca en ancho para que el contenedor active el scroll */
 .matricula-guia-img.zoomed {
-    width: 220%; /* Crece un 220% para ser totalmente legible en el celular */
-    max-width: none;
-    cursor: zoom-out; /* Lupa con signo - */
+width: 220%;
+max-width: none;
+cursor: zoom-out;
 }
-
-.helper-explanation ul {
-    list-style: none;
-}
-
+.helper-explanation ul { list-style: none; }
 .helper-explanation li {
-    font-size: 12px;
-    color: var(--text-muted);
-    display: flex;
-    gap: 6px;
+font-size: 12px;
+color: var(--text-muted);
+display: flex;
+gap: 6px;
 }
-
 .text-success { color: var(--accent-color); }
 .modal-footer { padding: 0 16px 16px 16px; }
 
 /* ==========================================================================
-   9. UTILIDADES Y ANIMACIONES
-   ========================================================================== */
-.hidden {
-    display: none !important; /* Fuerza el ocultamiento */
-}
-
+9. UTILIDADES Y ANIMACIONES
+========================================================================== */
+.hidden { display: none !important; }
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+from { opacity: 0; transform: translateY(8px); }
+to { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================
-10. TOAST DE CONFIRMACIÓN DE SALIDA (DOBLE PRESIÓN ATRÁS)
+10. TOAST DE CONFIRMACIÓN DE SALIDA
 ========================================================================== */
 .toast-container {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro semitransparente */
-    color: #ffffff;
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 3000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    animation: toastFadeIn 0.3s ease-out;
-    pointer-events: none; /* Permite que el usuario siga tocando la app detrás del mensaje */
+position: fixed;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+background-color: rgba(0, 0, 0, 0.85);
+color: #ffffff;
+padding: 12px 24px;
+border-radius: 30px;
+font-size: 14px;
+font-weight: 500;
+z-index: 3000;
+box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+animation: toastFadeIn 0.3s ease-out;
+pointer-events: none;
 }
-
-.toast-container.hidden {
-    display: none !important;
-}
-
+.toast-container.hidden { display: none !important; }
 @keyframes toastFadeIn {
-    from { opacity: 0; bottom: 10px; }
-    to { opacity: 1; bottom: 30px; }
+from { opacity: 0; bottom: 10px; }
+to { opacity: 1; bottom: 30px; }
 }
 
 /* ==========================================================================
-11. BARRA DE ESTADO INTERACTIVA (COMPACTA / SIN ETIQUETAS)
+11. BARRA DE ESTADO INTERACTIVA (COMPACTA)
 ========================================================================== */
 .barra-estado {
-    margin: 10px 16px 0 16px; 
-    padding: 4px 10px;
-    background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-    animation: fadeIn 0.3s ease-out;
+margin: 10px 16px 0 16px;
+padding: 4px 10px;
+background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+border-radius: 10px;
+border: 1px solid var(--border-color);
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+animation: fadeIn 0.3s ease-out;
 }
-
 .linea-progreso {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
+display: flex;
+align-items: center;
+width: 100%;
+justify-content: space-between;
 }
-
-/* Al no tener la etiqueta arriba, ajustamos el contenedor para que sea un "chip" táctil */
 .item-progreso {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    flex: 1;
-    transition: var(--transition);
-    padding: 3px 6px; 
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo tipo pastilla/chip */
-    border: 1px solid rgba(255, 255, 255, 0.9);
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+flex: 1;
+transition: var(--transition);
+padding: 3px 6px;
+border-radius: 4px;
+background-color: rgba(255, 255, 255, 0.7);
+border: 1px solid rgba(255, 255, 255, 0.9);
 }
-
-/* Efecto táctil al presionar para retroceder */
 .item-progreso:active {
-    background-color: #ffffff;
-    transform: scale(0.96);
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+background-color: #ffffff;
+transform: scale(0.96);
+box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
-
-/* El texto ahora es el único protagonista, así que lo hacemos más legible */
 .valor-paso {
-    font-size: 11px;
-    color: var(--primary-color);
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0;
-    font-weight: 600;
-    max-width: 100px; /* Evita que nombres muy largos rompan el diseño */
+font-size: 11px;
+color: var(--primary-color);
+text-align: center;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+margin: 0;
+font-weight: 600;
+max-width: 100px;
 }
-
 .flecha-separador {
-    color: var(--secondary-color);
-    font-size: 12px;
-    font-weight: bold;
-    flex-shrink: 0;
-    margin: 4px 8px;
-    opacity: 0.7;
+color: var(--secondary-color);
+font-size: 12px;
+font-weight: bold;
+flex-shrink: 0;
+margin: 4px 8px;
+opacity: 0.7;
 }
 
 /* ==========================================================================
-12. TARJETA DE CONFIRMACIÓN DEL SERVICIO (PASO 3) - RÉPLICA OPTIMIZADA
+12. TARJETA DE CONFIRMACIÓN DEL SERVICIO (PASO 3)
 ========================================================================== */
 .service-context-card {
-    background: linear-gradient(135deg, #f0f4f8 0%, #ebf8ff 100%);
-    border: 1px solid #bee3f8;
-    border-left: 4px solid var(--secondary-color);
-    border-radius: 10px;
-    padding: 10px 12px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    animation: fadeIn 0.3s ease-out;
+background: linear-gradient(135deg, #f0f4f8 0%, #ebf8ff 100%);
+border: 1px solid #bee3f8;
+border-left: 4px solid var(--secondary-color);
+border-radius: 10px;
+padding: 10px 12px;
+margin-top: 0px;
+margin-bottom: 10px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+animation: fadeIn 0.3s ease-out;
 }
-
 .context-row {
-    display: flex;
-    align-items: center; /* Alineación superior para que el check quede centrado */
-    gap: 12px;
+display: flex;
+align-items: center;
+gap: 12px;
 }
-
-/* 🟢 EL CHECK CENTRADO VERTICALMENTE */
 .context-check-icon {
-    flex-shrink: 0; /* Evita que el icono se encoja */
-    width: 28px;
-    height: 28px;
-    background-color: #38a169; /* Verde éxito */
-    color: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    margin-top: 0; /* Ajuste fino para centrado visual perfecto */
-    box-shadow: 0 2px 4px rgba(56, 161, 105, 0.3);
+flex-shrink: 0;
+width: 28px;
+height: 28px;
+background-color: #38a169;
+color: #ffffff;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 14px;
+margin-top: 0;
+box-shadow: 0 2px 4px rgba(56, 161, 105, 0.3);
 }
-
 .context-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+flex: 1;
+display: flex;
+flex-direction: column;
+gap: 2px;
 }
-
-/* REPLICA EXACTA DE LOS ESTILOS DEL PASO 2 */
 .context-content h4 {
-    font-size: 15px;
-    color: var(--primary-color);
-    font-weight: 700;
-    margin: 0;
-    line-height: 1.3;
+font-size: 15px;
+color: var(--primary-color);
+font-weight: 700;
+margin: 0;
+line-height: 1.3;
 }
-
 .context-free-install {
-    font-size: 12px;
-    color: var(--accent-color); /* Turquesa para destacar */
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.2;
+font-size: 12px;
+color: var(--accent-color);
+font-weight: 600;
+margin: 0;
+line-height: 1.2;
+}
+.context-description {
+font-size: 12px;
+color: var(--text-muted);
+margin: 0;
+line-height: 1.4;
+padding-top: 2px;
 }
 
-.context-description {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin: 0;
-    line-height: 1.4;
-    padding-top: 2px;
+/* ==========================================================================
+13. 🟢 BOTÓN FLOTANTE DE WHATSAPP (OPTIMIZADO MÓVIL)
+========================================================================== */
+.whatsapp-float {
+position: fixed;
+bottom: 24px;
+right: 20px;
+width: 60px;
+height: 60px;
+background-color: var(--whatsapp-color);
+color: #ffffff;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 32px;
+box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+z-index: 500; 
+text-decoration: none;
+transition: transform 0.25s ease, box-shadow 0.25s ease;
+animation: whatsappPulse 2.5s infinite;
+}
+.whatsapp-float:active {
+transform: scale(0.92);
+box-shadow: 0 3px 10px rgba(37, 211, 102, 0.4);
+}
+.whatsapp-tooltip {
+position: absolute;
+right: 72px;
+background-color: #ffffff;
+color: var(--text-main);
+padding: 8px 14px;
+border-radius: 8px;
+font-size: 13px;
+font-weight: 600;
+white-space: nowrap;
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+opacity: 0;
+pointer-events: none;
+transform: translateX(10px);
+transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.whatsapp-tooltip::after {
+content: "";
+position: absolute;
+top: 50%;
+right: -6px;
+transform: translateY(-50%);
+width: 0;
+height: 0;
+border-left: 6px solid #ffffff;
+border-top: 6px solid transparent;
+border-bottom: 6px solid transparent;
+}
+.whatsapp-float:hover .whatsapp-tooltip {
+opacity: 1;
+transform: translateX(0);
+}
+@keyframes whatsappPulse {
+0% { box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.5); }
+70% { box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45), 0 0 0 15px rgba(37, 211, 102, 0); }
+100% { box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+@media (max-height: 600px) {
+.whatsapp-float {
+width: 52px;
+height: 52px;
+font-size: 28px;
+bottom: 16px;
+right: 14px;
+}
 }
