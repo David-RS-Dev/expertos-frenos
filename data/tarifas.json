@@ -1,27 +1,27 @@
 {
   "Auto pequeno": {
-    "calidad_pastillas": { "URBANO": 25, "ESTANDAR": 35, "PREMIUM": 90 },
-    "servicio_integral": { "URBANO": 55, "ESTANDAR": 65, "PREMIUM": 120 },
-    "mano_de_obra": { "solo_pastillas": 10, "cambio_discos": 20 }
+    "calidad_pastillas": { "OFERTA_WEB": 25, "ESTANDAR": 35, "PREMIUM": 90 },
+    "servicio_integral": { "OFERTA_WEB": 45, "ESTANDAR": 55, "PREMIUM": 110 },
+    "mano_de_obra": { "solo_pastillas": 10, "cambio_discos": 15 }
   },
   "Sedan mediano": {
-    "calidad_pastillas": { "URBANO": 35, "ESTANDAR": 55, "PREMIUM": 105 },
-    "servicio_integral": { "URBANO": 75, "ESTANDAR": 95, "PREMIUM": 145 },
-    "mano_de_obra": { "solo_pastillas": 15, "cambio_discos": 25 }
+    "calidad_pastillas": { "OFERTA_WEB": 35, "ESTANDAR": 55, "PREMIUM": 105 },
+    "servicio_integral": { "OFERTA_WEB": 60, "ESTANDAR": 80, "PREMIUM": 130 },
+    "mano_de_obra": { "solo_pastillas": 15, "cambio_discos": 20 }
   },
   "SUV/ Camioneta mediana": {
-    "calidad_pastillas": { "URBANO": 45, "ESTANDAR": 65, "PREMIUM": 115 },
-    "servicio_integral": { "URBANO": 105, "ESTANDAR": 125, "PREMIUM": 175 },
-    "mano_de_obra": { "solo_pastillas": 20, "cambio_discos": 35 }
+    "calidad_pastillas": { "OFERTA_WEB": 45, "ESTANDAR": 65, "PREMIUM": 125 },
+    "servicio_integral": { "OFERTA_WEB": 75, "ESTANDAR": 95, "PREMIUM": 155 },
+    "mano_de_obra": { "solo_pastillas": 20, "cambio_discos": 25 }
   },
   "SUV grande/ Pickup": {
-    "calidad_pastillas": { "URBANO": 50, "ESTANDAR": 75, "PREMIUM": 145 },
-    "servicio_integral": { "URBANO": 135, "ESTANDAR": 160, "PREMIUM": 230 },
-    "mano_de_obra": { "solo_pastillas": 35, "cambio_discos": 50 }
+    "calidad_pastillas": { "OFERTA_WEB": 55, "ESTANDAR": 75, "PREMIUM": 155 },
+    "servicio_integral": { "OFERTA_WEB": 90, "ESTANDAR": 110, "PREMIUM": 190 },
+    "mano_de_obra": { "solo_pastillas": 25, "cambio_discos": 30 }
   },
   "Vehiculo premium": {
-    "calidad_pastillas": { "URBANO": null, "ESTANDAR": 125, "PREMIUM": 185 },
-    "servicio_integral": { "URBANO": null, "ESTANDAR": 215, "PREMIUM": 275 },
-    "mano_de_obra": { "solo_pastillas": 45, "cambio_discos": 65 }
+    "calidad_pastillas": { "OFERTA_WEB": null, "ESTANDAR": 125, "PREMIUM": 185 },
+    "servicio_integral": { "OFERTA_WEB": null, "ESTANDAR": 205, "PREMIUM": 265 },
+    "mano_de_obra": { "solo_pastillas": 40, "cambio_discos": 50 }
   }
 }
