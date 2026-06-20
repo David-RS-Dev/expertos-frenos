@@ -950,3 +950,11 @@ right: 14px;
     font-weight: 600;
     margin-left: 4px;
 }
+
+/* ==========================================================================
+15. AJUSTE DE ESPACIADO: "INCLUYE INSTALACIÓN GRATIS" DENTRO DE TARJETAS
+========================================================================== */
+.tier-price + .context-free-install {
+    margin-top: -8px;      /* Compensa el margen inferior del .tier-price */
+    margin-bottom: 12px;   /* Espacio justo antes del botón */
+}
