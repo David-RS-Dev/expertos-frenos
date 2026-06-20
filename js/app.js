@@ -205,15 +205,15 @@ function calcularYDesplegarPrecios() {
     const textosTarjetas = {
         "calidad_pastillas": {
             estandar: {
-                titulo: "Pastillas Nuevas - Calidad Estándar",
+                titulo: "Pastillas Nuevas ⇀ Calidad Estándar",
                 descripcion: "Cumple especificaciones originales de fábrica. Gran durabilidad."
             },
             premium: {
-                titulo: "Pastillas Nuevas - Calidad Premium",
+                titulo: "Pastillas Nuevas ⇀ Calidad Premium",
                 descripcion: "Máximo rendimiento, compuesto aleación libre de ruidos y frenado de emergencia superior."
             },
             exclusiva: {
-                titulo: "Pastillas Nuevas - Oferta Exclusiva Web",
+                titulo: "Pastillas Nuevas ⇀ Oferta Exclusiva Web",
                 descripcion: "Precio especial y único para clientes que agendan desde nuestra App."
             }
         },
@@ -270,7 +270,15 @@ function calcularYDesplegarPrecios() {
         `${cotizacionCliente.marca} ${cotizacionCliente.modelo}` : 
         cotizacionCliente.marca;
         
-    document.getElementById("prices-subtitle").textContent = `Precios para ${nombreVehiculo}`;
+    const nombresServicio = {
+    "calidad_pastillas": "Pastillas Nuevas",
+    "servicio_integral": "Servicio Integral",
+    "mano_de_obra": "Solo Mano de Obra",
+    "rectificacion": "Solo Rectificación"
+    };
+
+    const nombreServicio = nombresServicio[servicio] || servicio;
+    document.getElementById("prices-subtitle").textContent = `${nombreVehiculo}  ➥  ${nombreServicio}`;
 
     const serviciosInfo = {
         "calidad_pastillas": {
@@ -288,7 +296,6 @@ function calcularYDesplegarPrecios() {
             freeInstall: "",
             descripcion: "Si ya compraste tus propias pastillas o discos y buscas únicamente instalación calificada."
         },
-        // 🟢 AGREGADO
         "rectificacion": {
             titulo: "Solo Rectificación",
             freeInstall: "",
