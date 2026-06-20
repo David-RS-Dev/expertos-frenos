@@ -1014,3 +1014,30 @@ right: 14px;
     vertical-align: middle;
     line-height: 1;
 }
+
+/* ==========================================================================
+18. ALINEACIÓN DE ÍCONOS MATERIAL SYMBOLS EN BADGES Y BOTONES DE TARJETAS
+========================================================================== */
+
+/* Ícono dentro del badge (Alta Gama, Más Vendido, etc.) */
+.tier-badge .material-symbols-outlined {
+    font-size: 12px;
+    vertical-align: middle;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Botones de selección de tarjetas (Estándar, Premium, Exclusiva) */
+.btn-select-tier {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-select-tier .material-symbols-outlined {
+    font-size: 18px;
+    vertical-align: middle;
+    line-height: 1;
+}
