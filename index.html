@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Cotizador de Frenos Inteligente</title>
 <link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
 <div class="app-container">
@@ -112,7 +113,11 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </div>
 <div class="services-vertical-list">
 <button class="service-selection-card" onclick="seleccionarServicio('calidad_pastillas')">
-<div class="service-icon"><i class="fa-solid fa-disc-drive"></i></div>
+<div class="service-icon">
+    <span class="material-symbols-outlined">
+    no_crash
+    </span>
+</div>
 <div class="service-details">
 <h4>Pastillas Nuevas</h4>
 <p>Incluye Instalación GRATIS</p>
@@ -121,7 +126,11 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <div class="service-arrow"><i class="fa-solid fa-chevron-right"></i></div>
 </button>
 <button class="service-selection-card" onclick="seleccionarServicio('servicio_integral')">
-<div class="service-icon"><i class="fa-solid fa-circle-dot"></i></div>
+<div class="service-icon">
+    <span class="material-symbols-outlined">
+    car_repair
+    </span>
+</div>
 <div class="service-details">
 <h4>Servicio Integral (Recomendado)</h4>
 <p>Incluye Instalación GRATIS</p>
@@ -131,7 +140,11 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </button>
 <!-- 🟢 NUEVA TARJETA: SOLO RECTIFICACIÓN -->
 <button class="service-selection-card" onclick="seleccionarServicio('rectificacion')">
-<div class="service-icon"><i class="fa-solid fa-compact-disc"></i></div>
+<div class="service-icon">
+    <span class="material-symbols-outlined">
+    car_gear
+    </span>
+</div>
 <div class="service-details">
 <h4>Solo Rectificación</h4>
 <p>Rectificación técnica de discos para eliminar vibraciones y ruidos.</p>
@@ -139,7 +152,11 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <div class="service-arrow"><i class="fa-solid fa-chevron-right"></i></div>
 </button>
 <button class="service-selection-card" onclick="seleccionarServicio('mano_de_obra')">
-<div class="service-icon"><i class="fa-solid fa-hand-holding-wrench"></i></div>
+<div class="service-icon">
+    <span class="material-symbols-outlined">
+    engineering
+    </span>
+</div>
 <div class="service-details">
 <h4>Solo Mano de Obra</h4>
 <p>Si ya compraste tus propias pastillas o discos y buscas únicamente instalación calificada.</p>
