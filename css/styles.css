@@ -902,9 +902,10 @@ right: 14px;
 }
 
 /* ==========================================================================
-14. 🟢 TARJETA DE PRECIO ÚNICO (SOLO RECTIFICACIÓN)
+14. 🟢 TARJETAS DE PRECIO ÚNICO (SOLO RECTIFICACIÓN Y SOLO MANO DE OBRA)
 ========================================================================== */
-.single-pricing-card {
+.single-pricing-card,
+.dual-option-card {
     background-color: var(--card-bg);
     border: 2px solid var(--accent-color);
     border-radius: var(--radius);
@@ -916,7 +917,8 @@ right: 14px;
     animation: fadeIn 0.3s ease-out;
 }
 
-.single-option-info h4 {
+.single-option-info h4,
+.dual-option-info h4 {
     font-size: 16px;
     color: var(--primary-color);
     margin-bottom: 6px;
@@ -925,13 +927,15 @@ right: 14px;
     gap: 8px;
 }
 
-.single-option-info p {
+.single-option-info p,
+.dual-option-info p {
     font-size: 13px;
     color: var(--text-muted);
     line-height: 1.4;
 }
 
-.single-option-cost {
+.single-option-cost,
+.dual-option-cost {
     font-size: 32px;
     font-weight: 800;
     color: var(--accent-color);
@@ -939,12 +943,14 @@ right: 14px;
     align-items: baseline;
 }
 
-.single-option-cost span:first-child {
+.single-option-cost span:first-child,
+.dual-option-cost span:first-child {
     font-size: 20px;
     margin-right: 2px;
 }
 
-.single-option-cost small {
+.single-option-cost small,
+.dual-option-cost small {
     font-size: 14px;
     color: var(--text-muted);
     font-weight: 600;
@@ -991,4 +997,47 @@ right: 14px;
 .tier-title-text {
     flex: 1;
     min-width: 0;
+}
+
+/* ==========================================================================
+17. ALINEACIÓN DE ICONOS DENTRO DE BOTONES PRIMARIOS
+========================================================================== */
+.btn-primary-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary-block .material-symbols-outlined {
+    font-size: 20px;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+/* ==========================================================================
+18. ALINEACIÓN DE ÍCONOS MATERIAL SYMBOLS EN BADGES Y BOTONES DE TARJETAS
+========================================================================== */
+
+/* Ícono dentro del badge (Alta Gama, Más Vendido, etc.) */
+.tier-badge .material-symbols-outlined {
+    font-size: 12px;
+    vertical-align: middle;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Botones de selección de tarjetas (Estándar, Premium, Exclusiva) */
+.btn-select-tier {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-select-tier .material-symbols-outlined {
+    font-size: 18px;
+    vertical-align: middle;
+    line-height: 1;
 }

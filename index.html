@@ -195,11 +195,19 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <span class="tax-tag">+ IVA</span>
 </div>
 <p class="context-free-install">Incluye Instalación GRATIS</p>
-<button class="btn-select-tier btn-featured" onclick="finalizarCotizacion('Estándar')">Elegir Estándar (Recomendado)</button>
+<button class="btn-select-tier btn-featured" onclick="finalizarCotizacion('Estándar')">
+    <i class="fa-solid fa-star"></i>
+    Elegir Estándar
+</button>
 </div>
 <!-- Tarjeta Premium -->
 <div class="tier-card premium-tier-card" id="tier-PREMIUM">
-<div class="tier-badge premium-badge">Alta Gama</div>
+<div class="tier-badge premium-badge">
+    <span class="material-symbols-outlined">
+    diamond
+    </span>
+    Alta Gama
+</div>
 <h4>
     <span class="material-symbols-outlined tier-icon">no_crash</span>
     <span class="tier-title-text">Pastillas Nuevas ⇀ Calidad Premium</span>
@@ -211,7 +219,12 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <span class="tax-tag">+ IVA</span>
 </div>
 <p class="context-free-install">Incluye Instalación GRATIS</p>
-<button class="btn-select-tier btn-premium" onclick="finalizarCotizacion('Premium')">Seleccionar Premium</button>
+<button class="btn-select-tier btn-premium" onclick="finalizarCotizacion('Premium')">
+    <span class="material-symbols-outlined">
+    diamond
+    </span>
+    Seleccionar Premium
+</button>
 </div>
 <!-- Tarjeta Oferta Exclusiva -->
 <div class="tier-card" id="tier-EXCLUSIVA">
@@ -231,7 +244,10 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <div class="restriction-msg hidden" id="restriction-exclusiva-msg">
 <i class="fa-solid fa-triangle-exclamation"></i> No recomendado para este nivel de prestaciones.
 </div>
-<button class="btn-select-tier btn-exclusiva" onclick="finalizarCotizacion('Oferta Web')">Elegir Oferta Web</button>
+<button class="btn-select-tier btn-exclusiva" onclick="finalizarCotizacion('Oferta Web')">
+    <i class="fa-solid fa-gift"></i>
+    Elegir Oferta Web
+</button>
 </div>
 </div>
 <div id="dual-pricing-container" class="pricing-dual-list hidden">
@@ -243,17 +259,30 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <div class="dual-option-cost">
 <span>$</span><span id="price-dual-pastillas">00</span> <small>+ IVA</small>
 </div>
-<button class="btn-secondary" onclick="finalizarCotizacion('Mano de obra - Solo Pastillas')">Seleccionar</button>
+<button class="btn-primary-block" onclick="finalizarCotizacion('Mano de obra - Solo Pastillas')">
+    <i class="fa-solid fa-wrench"></i>
+    Agendar ⇀ Instalación de Pastillas
+</button>
 </div>
 <div class="dual-option-card">
 <div class="dual-option-info">
-<h4><i class="fa-solid fa-screwdriver-wrench"></i> Cambio de Discos y Pastillas</h4>
+<h4>
+    <span class="material-symbols-outlined">
+    engineering
+    </span>
+    Cambio de Discos y Pastillas
+</h4>
 <p>Instalación completa de componentes nuevos traídos por el cliente.</p>
 </div>
 <div class="dual-option-cost">
 <span>$</span><span id="price-dual-discos">00</span> <small>+ IVA</small>
 </div>
-<button class="btn-secondary" onclick="finalizarCotizacion('Mano de obra - Instalación Completa')">Seleccionar</button>
+<button class="btn-primary-block" onclick="finalizarCotizacion('Mano de obra - Instalación Completa')">
+    <span class="material-symbols-outlined">
+    engineering
+    </span>
+    Agendar ⇀ Cambio de Discos y Pastillas
+</button>
 </div>
 </div>
 <div id="single-pricing-container" class="single-pricing-card hidden">
@@ -269,7 +298,12 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <div class="single-option-cost">
 <span>$</span><span id="price-single-rectificacion">00</span> <small>+ IVA</small>
 </div>
-<button class="btn-primary-block" onclick="finalizarCotizacion('Solo Rectificación')">Agendar Rectificación</button>
+<button class="btn-primary-block" onclick="finalizarCotizacion('Solo Rectificación')">
+    <span class="material-symbols-outlined">
+    car_gear
+    </span>
+    Agendar ⇀ Rectificación
+</button>
 </div>
 <footer class="pricing-disclaimer">
 <p><i class="fa-solid fa-circle-info"></i> Los precios mostrados no incluyen el valor legal del IVA vigente y están sujetos a verificación física de las condiciones del vehículo en los patios del taller.</p>
