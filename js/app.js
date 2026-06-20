@@ -194,6 +194,13 @@ function calcularYDesplegarPrecios() {
     const singleContainer = document.getElementById("single-pricing-container");
     const contextTitle = document.getElementById("context-service-title");
     const contextDesc = document.getElementById("context-service-desc");
+    const contextCard = document.getElementById("service-context-card");
+
+    if (servicio === "calidad_pastillas" || servicio === "servicio_integral") {
+        contextCard.classList.add("hidden");
+    } else {
+        contextCard.classList.remove("hidden");
+    }
     
     const textosTarjetas = {
         "calidad_pastillas": {
