@@ -247,21 +247,36 @@ function calcularYDesplegarPrecios() {
         }
     };
 
-    // Aplicar textos según el servicio seleccionado
-    if (servicio && textosTarjetas[servicio]) {
+// Mapeo de iconos por servicio
+const iconosServicio = {
+    "calidad_pastillas": "no_crash",
+    "servicio_integral": "car_repair",
+    "mano_de_obra": "engineering",
+    "rectificacion": "car_gear"
+};
+
+const iconoActual = iconosServicio[servicio] || "no_crash";
+
+// Aplicar textos e iconos según el servicio seleccionado
+if (servicio && textosTarjetas[servicio]) {
         const textos = textosTarjetas[servicio];
         
+        // Actualizar icono de las 3 tarjetas
+        document.querySelectorAll(".tier-icon").forEach(icon => {
+            icon.textContent = iconoActual;
+        });
+        
         // Actualizar tarjeta Estándar
-        document.querySelector("#tier-ESTANDAR h4").textContent = textos.estandar.titulo;
+        document.querySelector("#tier-ESTANDAR .tier-title-text").textContent = textos.estandar.titulo;
         document.querySelector("#tier-ESTANDAR .tier-desc").textContent = textos.estandar.descripcion;
         
         // Actualizar tarjeta Premium
-        document.querySelector("#tier-PREMIUM h4").textContent = textos.premium.titulo;
+        document.querySelector("#tier-PREMIUM .tier-title-text").textContent = textos.premium.titulo;
         document.querySelector("#tier-PREMIUM .tier-desc").textContent = textos.premium.descripcion;
         
-        // Actualizar tarjeta Oferta Exclusiva (si existe)
+        // Actualizar tarjeta Oferta Exclusiva
         if (textos.exclusiva) {
-            document.querySelector("#tier-EXCLUSIVA h4").textContent = textos.exclusiva.titulo;
+            document.querySelector("#tier-EXCLUSIVA .tier-title-text").textContent = textos.exclusiva.titulo;
             document.querySelector("#tier-EXCLUSIVA .tier-desc").textContent = textos.exclusiva.descripcion;
         }
     }
