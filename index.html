@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Cotizador de Frenos Inteligente</title>
 <link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
 <div class="app-container">
@@ -35,7 +36,7 @@
 <div class="item-progreso" id="btn-regresar-vehiculo" title="Toca para corregir vehículo">
 <strong id="txt-resumen-vehiculo" class="valor-paso">-</strong>
 </div>
-<div class="flecha-separador">➔</div>
+<div class="flecha-separador">⟺</div>
 <div class="item-progreso" id="btn-regresar-servicio" title="Toca para cambiar de servicio">
 <strong id="txt-resumen-servicio" class="valor-paso">-</strong>
 </div>
@@ -112,7 +113,11 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </div>
 <div class="services-vertical-list">
 <button class="service-selection-card" onclick="seleccionarServicio('calidad_pastillas')">
-<div class="service-icon"><i class="fa-solid fa-disc-drive"></i></div>
+<div class="service-icon">
+    <span class="material-symbols-outlined">
+    no_crash
+    </span>
+</div>
 <div class="service-details">
 <h4>Pastillas Nuevas</h4>
 <p>Incluye Instalación GRATIS</p>
@@ -121,7 +126,11 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <div class="service-arrow"><i class="fa-solid fa-chevron-right"></i></div>
 </button>
 <button class="service-selection-card" onclick="seleccionarServicio('servicio_integral')">
-<div class="service-icon"><i class="fa-solid fa-circle-dot"></i></div>
+<div class="service-icon">
+    <span class="material-symbols-outlined">
+    car_repair
+    </span>
+</div>
 <div class="service-details">
 <h4>Servicio Integral (Recomendado)</h4>
 <p>Incluye Instalación GRATIS</p>
@@ -131,7 +140,11 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </button>
 <!-- 🟢 NUEVA TARJETA: SOLO RECTIFICACIÓN -->
 <button class="service-selection-card" onclick="seleccionarServicio('rectificacion')">
-<div class="service-icon"><i class="fa-solid fa-compact-disc"></i></div>
+<div class="service-icon">
+    <span class="material-symbols-outlined">
+    car_gear
+    </span>
+</div>
 <div class="service-details">
 <h4>Solo Rectificación</h4>
 <p>Rectificación técnica de discos para eliminar vibraciones y ruidos.</p>
@@ -139,7 +152,11 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <div class="service-arrow"><i class="fa-solid fa-chevron-right"></i></div>
 </button>
 <button class="service-selection-card" onclick="seleccionarServicio('mano_de_obra')">
-<div class="service-icon"><i class="fa-solid fa-hand-holding-wrench"></i></div>
+<div class="service-icon">
+    <span class="material-symbols-outlined">
+    engineering
+    </span>
+</div>
 <div class="service-details">
 <h4>Solo Mano de Obra</h4>
 <p>Si ya compraste tus propias pastillas o discos y buscas únicamente instalación calificada.</p>
@@ -166,30 +183,32 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <div id="tier-pricing-container" class="pricing-tiers-grid">
 <div class="tier-card featured-tier" id="tier-ESTANDAR">
 <div class="tier-badge estandar-badge"><i class="fa-solid fa-star"></i> Más Vendido</div>
-<h4>Calidad Estándar</h4>
+<h4>Pastillas Nuevas - Calidad Estándar</h4>
 <p class="tier-desc">Cumple especificaciones originales de fábrica. Gran durabilidad.</p>
 <div class="tier-price">
 <span class="currency">$</span>
 <span class="amount" id="price-estandar-val">00</span>
 <span class="tax-tag">+ IVA</span>
 </div>
+<p class="context-free-install">Incluye Instalación GRATIS</p>
 <button class="btn-select-tier btn-featured" onclick="finalizarCotizacion('Estándar')">Elegir Estándar (Recomendado)</button>
 </div>
 <div class="tier-card premium-tier-card" id="tier-PREMIUM">
 <div class="tier-badge premium-badge">Alta Gama</div>
-<h4>Calidad Premium</h4>
+<h4>Pastillas Nuevas - Calidad Premium</h4>
 <p class="tier-desc">Máximo rendimiento, compuesto aleación libre de ruidos y frenado de emergencia superior.</p>
 <div class="tier-price">
 <span class="currency">$</span>
 <span class="amount" id="price-premium-val">00</span>
 <span class="tax-tag">+ IVA</span>
 </div>
+<p class="context-free-install">Incluye Instalación GRATIS</p>
 <button class="btn-select-tier btn-premium" onclick="finalizarCotizacion('Premium')">Seleccionar Premium</button>
 </div>
 <!-- 🟢 TARJETA ACTUALIZADA: OFERTA EXCLUSIVA WEB -->
 <div class="tier-card" id="tier-EXCLUSIVA">
 <div class="tier-badge exclusiva-badge"><i class="fa-solid fa-gift"></i> Oferta Web</div>
-<h4>Oferta Exclusiva Web</h4>
+<h4>Pastillas Nuevas - Oferta Exclusiva Web</h4>
 <p class="tier-desc">Precio especial y único para clientes que agendan desde nuestra App.</p>
 <div class="tier-price">
 <span class="original-price" id="precio-original-exclusiva">$XX</span>
@@ -197,6 +216,7 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <span class="amount" id="price-exclusiva-val">00</span>
 <span class="tax-tag">+ IVA</span>
 </div>
+<p class="context-free-install">Incluye Instalación GRATIS</p>
 <div class="restriction-msg hidden" id="restriction-exclusiva-msg">
 <i class="fa-solid fa-triangle-exclamation"></i> No recomendado para este nivel de prestaciones.
 </div>
@@ -225,10 +245,14 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <button class="btn-secondary" onclick="finalizarCotizacion('Mano de obra - Instalación Completa')">Seleccionar</button>
 </div>
 </div>
-<!-- 🟢 NUEVO CONTENEDOR: PRECIO ÚNICO PARA RECTIFICACIÓN -->
 <div id="single-pricing-container" class="single-pricing-card hidden">
 <div class="single-option-info">
-<h4><i class="fa-solid fa-compact-disc"></i> Rectificación de Discos</h4>
+<h4>
+    <span class="material-symbols-outlined">
+    car_gear
+    </span> 
+    Rectificación de Discos
+</h4>
 <p>Servicio de rectificación técnica para eliminar vibraciones, ruidos y prolongar la vida útil de tus pastillas.</p>
 </div>
 <div class="single-option-cost">

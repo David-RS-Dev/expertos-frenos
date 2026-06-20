@@ -191,15 +191,94 @@ function calcularYDesplegarPrecios() {
     const servicio = cotizacionCliente.servicio;
     const tierContainer = document.getElementById("tier-pricing-container");
     const dualContainer = document.getElementById("dual-pricing-container");
-    const singleContainer = document.getElementById("single-pricing-container"); // 🟢 AGREGADO
+    const singleContainer = document.getElementById("single-pricing-container");
     const contextTitle = document.getElementById("context-service-title");
     const contextDesc = document.getElementById("context-service-desc");
+    const contextCard = document.getElementById("service-context-card");
+
+    if (servicio === "calidad_pastillas" || servicio === "servicio_integral") {
+        contextCard.classList.add("hidden");
+    } else {
+        contextCard.classList.remove("hidden");
+    }
     
+    const textosTarjetas = {
+        "calidad_pastillas": {
+            estandar: {
+                titulo: "Pastillas Nuevas ⇀ Calidad Estándar",
+                descripcion: "Cumple especificaciones originales de fábrica. Gran durabilidad."
+            },
+            premium: {
+                titulo: "Pastillas Nuevas ⇀ Calidad Premium",
+                descripcion: "Máximo rendimiento, compuesto aleación libre de ruidos y frenado de emergencia superior."
+            },
+            exclusiva: {
+                titulo: "Pastillas Nuevas ⇀ Oferta Exclusiva Web",
+                descripcion: "Precio especial y único para clientes que agendan desde nuestra App."
+            }
+        },
+        "servicio_integral": {
+            estandar: {
+                titulo: "Pastillas Nuevas + Rectificación",
+                descripcion: "Incluye pastillas de calidad original y rectificación técnica de discos para eliminar vibraciones."
+            },
+            premium: {
+                titulo: "Pastillas Premium + Rectificación",
+                descripcion: "Pastillas de alta gama con rectificación técnica de discos. Máxima durabilidad."
+            },
+            exclusiva: {
+                titulo: "Pack Web: Integral Completo",
+                descripcion: "Oferta especial: Pastillas Nuevas + rectificación técnica de discos."
+            }
+        },
+        "mano_de_obra": {
+            estandar: {
+                titulo: "Instalación Básica",
+                descripcion: "Mano de obra especializada para instalación de pastillas en un eje (delantero o posterior)."
+            },
+            premium: {
+                titulo: "Instalación Completa",
+                descripcion: "Cambio de discos y pastillas en ambos ejes con revisión completa del sistema de frenos."
+            },
+            exclusiva: {
+                titulo: "No disponible",
+                descripcion: "Este servicio no aplica para mano de obra únicamente."
+            }
+        }
+    };
+
+    // Aplicar textos según el servicio seleccionado
+    if (servicio && textosTarjetas[servicio]) {
+        const textos = textosTarjetas[servicio];
+        
+        // Actualizar tarjeta Estándar
+        document.querySelector("#tier-ESTANDAR h4").textContent = textos.estandar.titulo;
+        document.querySelector("#tier-ESTANDAR .tier-desc").textContent = textos.estandar.descripcion;
+        
+        // Actualizar tarjeta Premium
+        document.querySelector("#tier-PREMIUM h4").textContent = textos.premium.titulo;
+        document.querySelector("#tier-PREMIUM .tier-desc").textContent = textos.premium.descripcion;
+        
+        // Actualizar tarjeta Oferta Exclusiva (si existe)
+        if (textos.exclusiva) {
+            document.querySelector("#tier-EXCLUSIVA h4").textContent = textos.exclusiva.titulo;
+            document.querySelector("#tier-EXCLUSIVA .tier-desc").textContent = textos.exclusiva.descripcion;
+        }
+    }
+
     const nombreVehiculo = cotizacionCliente.modelo ? 
         `${cotizacionCliente.marca} ${cotizacionCliente.modelo}` : 
         cotizacionCliente.marca;
         
-    document.getElementById("prices-subtitle").textContent = `Precios para ${nombreVehiculo}`;
+    const nombresServicio = {
+    "calidad_pastillas": "Pastillas Nuevas",
+    "servicio_integral": "Servicio Integral",
+    "mano_de_obra": "Solo Mano de Obra",
+    "rectificacion": "Solo Rectificación"
+    };
+
+    const nombreServicio = nombresServicio[servicio] || servicio;
+    document.getElementById("prices-subtitle").textContent = `${nombreVehiculo}  ➥  ${nombreServicio}`;
 
     const serviciosInfo = {
         "calidad_pastillas": {
@@ -217,7 +296,6 @@ function calcularYDesplegarPrecios() {
             freeInstall: "",
             descripcion: "Si ya compraste tus propias pastillas o discos y buscas únicamente instalación calificada."
         },
-        // 🟢 AGREGADO
         "rectificacion": {
             titulo: "Solo Rectificación",
             freeInstall: "",
