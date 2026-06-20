@@ -958,3 +958,37 @@ right: 14px;
     margin-top: -8px;      /* Compensa el margen inferior del .tier-price */
     margin-bottom: 12px;   /* Espacio justo antes del botón */
 }
+
+/* ==========================================================================
+16. ICONO EN TÍTULOS DE TARJETAS DE PRECIO
+========================================================================== */
+.tier-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.tier-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+/* Color específico para cada tarjeta */
+#tier-ESTANDAR .tier-icon {
+    color: var(--accent-color);
+}
+
+#tier-PREMIUM .tier-icon {
+    color: var(--premium-color);
+}
+
+#tier-EXCLUSIVA .tier-icon {
+    color: var(--exclusiva-color);
+}
+
+.tier-title-text {
+    flex: 1;
+    min-width: 0;
+}

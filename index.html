@@ -181,9 +181,13 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <h3 id="prices-subtitle">Precios sugeridos en base a tu tipo de vehículo.</h3>
 </div>
 <div id="tier-pricing-container" class="pricing-tiers-grid">
+<!-- Tarjeta Estándar -->
 <div class="tier-card featured-tier" id="tier-ESTANDAR">
 <div class="tier-badge estandar-badge"><i class="fa-solid fa-star"></i> Más Vendido</div>
-<h4>Pastillas Nuevas - Calidad Estándar</h4>
+<h4>
+    <span class="material-symbols-outlined tier-icon">no_crash</span>
+    <span class="tier-title-text">Pastillas Nuevas ⇀ Calidad Estándar</span>
+</h4>
 <p class="tier-desc">Cumple especificaciones originales de fábrica. Gran durabilidad.</p>
 <div class="tier-price">
 <span class="currency">$</span>
@@ -193,9 +197,13 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <p class="context-free-install">Incluye Instalación GRATIS</p>
 <button class="btn-select-tier btn-featured" onclick="finalizarCotizacion('Estándar')">Elegir Estándar (Recomendado)</button>
 </div>
+<!-- Tarjeta Premium -->
 <div class="tier-card premium-tier-card" id="tier-PREMIUM">
 <div class="tier-badge premium-badge">Alta Gama</div>
-<h4>Pastillas Nuevas - Calidad Premium</h4>
+<h4>
+    <span class="material-symbols-outlined tier-icon">no_crash</span>
+    <span class="tier-title-text">Pastillas Nuevas ⇀ Calidad Premium</span>
+</h4>
 <p class="tier-desc">Máximo rendimiento, compuesto aleación libre de ruidos y frenado de emergencia superior.</p>
 <div class="tier-price">
 <span class="currency">$</span>
@@ -205,10 +213,13 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <p class="context-free-install">Incluye Instalación GRATIS</p>
 <button class="btn-select-tier btn-premium" onclick="finalizarCotizacion('Premium')">Seleccionar Premium</button>
 </div>
-<!-- 🟢 TARJETA ACTUALIZADA: OFERTA EXCLUSIVA WEB -->
+<!-- Tarjeta Oferta Exclusiva -->
 <div class="tier-card" id="tier-EXCLUSIVA">
 <div class="tier-badge exclusiva-badge"><i class="fa-solid fa-gift"></i> Oferta Web</div>
-<h4>Pastillas Nuevas - Oferta Exclusiva Web</h4>
+<h4>
+    <span class="material-symbols-outlined tier-icon">no_crash</span>
+    <span class="tier-title-text">Pastillas Nuevas ⇀ Oferta Exclusiva Web</span>
+</h4>
 <p class="tier-desc">Precio especial y único para clientes que agendan desde nuestra App.</p>
 <div class="tier-price">
 <span class="original-price" id="precio-original-exclusiva">$XX</span>
