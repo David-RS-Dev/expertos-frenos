@@ -998,3 +998,19 @@ right: 14px;
     flex: 1;
     min-width: 0;
 }
+
+/* ==========================================================================
+17. ALINEACIÓN DE ICONOS DENTRO DE BOTONES PRIMARIOS
+========================================================================== */
+.btn-primary-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary-block .material-symbols-outlined {
+    font-size: 20px;
+    vertical-align: middle;
+    line-height: 1;
+}
