@@ -902,9 +902,10 @@ right: 14px;
 }
 
 /* ==========================================================================
-14. 🟢 TARJETA DE PRECIO ÚNICO (SOLO RECTIFICACIÓN)
+14. 🟢 TARJETAS DE PRECIO ÚNICO (SOLO RECTIFICACIÓN Y SOLO MANO DE OBRA)
 ========================================================================== */
-.single-pricing-card {
+.single-pricing-card,
+.dual-option-card {
     background-color: var(--card-bg);
     border: 2px solid var(--accent-color);
     border-radius: var(--radius);
@@ -916,7 +917,8 @@ right: 14px;
     animation: fadeIn 0.3s ease-out;
 }
 
-.single-option-info h4 {
+.single-option-info h4,
+.dual-option-info h4 {
     font-size: 16px;
     color: var(--primary-color);
     margin-bottom: 6px;
@@ -925,13 +927,15 @@ right: 14px;
     gap: 8px;
 }
 
-.single-option-info p {
+.single-option-info p,
+.dual-option-info p {
     font-size: 13px;
     color: var(--text-muted);
     line-height: 1.4;
 }
 
-.single-option-cost {
+.single-option-cost,
+.dual-option-cost {
     font-size: 32px;
     font-weight: 800;
     color: var(--accent-color);
@@ -939,12 +943,14 @@ right: 14px;
     align-items: baseline;
 }
 
-.single-option-cost span:first-child {
+.single-option-cost span:first-child,
+.dual-option-cost span:first-child {
     font-size: 20px;
     margin-right: 2px;
 }
 
-.single-option-cost small {
+.single-option-cost small,
+.dual-option-cost small {
     font-size: 14px;
     color: var(--text-muted);
     font-weight: 600;
