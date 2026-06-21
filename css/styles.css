@@ -256,73 +256,112 @@ margin-bottom: 4px;
 5. CONTINGENCIA VISUAL POR SILUETAS (BOTONES GRANDES)
 ========================================================================== */
 .section-divider {
-border: 0;
-height: 1px;
-background-color: var(--border-color);
-margin: 20px 0;
+  border: 0;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 20px 0;
 }
 .contingency-container h4 {
-font-size: 14px;
-color: var(--text-main);
-margin-bottom: 14px;
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 14px;
 }
 .contingency-grid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 12px;
-margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
 }
 .silhouette-card {
-background-color: var(--card-bg);
-border: 2px solid var(--border-color);
-padding: 16px 10px;
-text-align: center;
-display: flex;
-flex-direction: column;
-align-items: center;
+  background-color: var(--card-bg);
+  /* Marco azulito suave por defecto */
+  border: 2px solid #cbd5e1; 
+  border-radius: var(--radius);
+  padding: 16px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
+
+/* Cuando se seleccionan o se presionan, se vuelve un azul más intenso */
 .silhouette-card:active, .silhouette-card.selected {
-border-color: var(--secondary-color);
-background-color: #f0f4f8;
+  border-color: var(--secondary-color, #0056b3);
+  background-color: #f0f4f8;
 }
-.car-emoji { font-size: 28px; margin-bottom: 6px; }
+
+/* Ajuste para que los iconos siempre nazcan azulitos */
+.car-emoji { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px; 
+  /* Color azulito para los iconos vectoriales (puedes usar var(--secondary-color) si es azul) */
+  color: #3b82f6; 
+  margin-bottom: 8px; 
+  height: 34px; 
+  transition: color 0.2s ease;
+}
+
+/* Al seleccionar, el icono toma el color de énfasis activo */
+.silhouette-card.selected .car-emoji,
+.silhouette-card:active .car-emoji {
+  color: var(--secondary-color, #0056b3);
+}
+
 .silhouette-card h5 {
-font-size: 13px;
-color: var(--primary-color);
-margin-bottom: 4px;
+  font-size: 13px;
+  color: var(--primary-color);
+  margin-bottom: 4px;
+  font-weight: 700;
 }
 .silhouette-card p {
-font-size: 11px;
-color: var(--text-muted);
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.2;
 }
+
+/* --- AJUSTES PARA LA SILUETA PREMIUM (Mantiene su distinción de gama alta) --- */
 .premium-silhouette {
-grid-column: span 2;
-border-color: #ebd5b3;
+  grid-column: span 2;
+  border-color: #ebd5b3;
+}
+.premium-silhouette .car-emoji {
+  color: #d69e2e; /* Mantiene la gema dorada */
 }
 .premium-silhouette:active, .premium-silhouette.selected {
-border-color: var(--premium-color);
-background-color: #fffaf0;
+  border-color: var(--premium-color, #d69e2e);
+  background-color: #fffaf0;
 }
+.premium-silhouette.selected .car-emoji,
+.premium-silhouette:active .car-emoji {
+  color: #b7791f;
+}
+
+/* --- FILA DE ENTRADA MANUAL --- */
 .manual-input-row {
-background-color: var(--card-bg);
-padding: 14px;
-border-radius: var(--radius);
-border: 1px solid var(--border-color);
-margin-top: 16px;
+  background-color: var(--card-bg);
+  padding: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  margin-top: 16px;
 }
 .manual-input-row label {
-font-size: 13px;
-font-weight: 600;
-display: block;
-margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
 }
 .manual-input-row input {
-width: 100%;
-padding: 10px;
-font-size: 14px;
-border: 1px solid var(--border-color);
-border-radius: 6px;
-margin-bottom: 12px;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-bottom: 12px;
 }
 
 /* ==========================================================================

@@ -73,27 +73,27 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <h4>Selecciona el tipo de carrocería que mejor describa tu auto:</h4>
 <div class="contingency-grid">
 <button class="silhouette-card" onclick="seleccionarPorSilueta('Auto pequeno')">
-<span class="car-emoji">🚗</span>
+<span class="car-emoji"><i class="fa-solid fa-car-side"></i></span>
 <h5>Auto Pequeño</h5>
 <p>Spark, Picanto, Swift, i10...</p>
 </button>
 <button class="silhouette-card" onclick="seleccionarPorSilueta('Sedan mediano')">
-<span class="car-emoji">🚙</span>
+<span class="car-emoji"><i class="fa-solid fa-car"></i></span>
 <h5>Sedán Mediano</h5>
 <p>Corolla, Sail, Onix, Sentra...</p>
 </button>
 <button class="silhouette-card" onclick="seleccionarPorSilueta('SUV/ Camioneta mediana')">
-<span class="car-emoji">🚜</span>
+<span class="car-emoji"><i class="fa-solid fa-truck-pickup"></i></span>
 <h5>SUV / Camioneta Mediana</h5>
 <p>Tucson, Sportage, Captiva, Duster...</p>
 </button>
 <button class="silhouette-card" onclick="seleccionarPorSilueta('SUV grande/ Pickup')">
-<span class="car-emoji">🚛</span>
+<span class="car-emoji"><i class="fa-solid fa-truck-monster"></i></span>
 <h5>SUV Grande / Pickup</h5>
 <p>Hilux, D-Max, Ranger, Fortuner...</p>
 </button>
 <button class="silhouette-card premium-silhouette" onclick="seleccionarPorSilueta('Vehiculo premium')">
-<span class="car-emoji">✨🏎️</span>
+<span class="car-emoji"><i class="fa-solid fa-gem"></i></span>
 <h5>Vehículo Premium</h5>
 <p>BMW, Mercedes-Benz, Audi, Volvo...</p>
 </button>
@@ -101,7 +101,12 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 <div class="manual-input-row">
 <label for="custom-car-name">Escribe la Marca y Modelo (Opcional):</label>
 <input type="text" id="custom-car-name" placeholder="Ej: Ford Mustang 1980">
-<button class="btn-primary-block" onclick="confirmarVehiculoManual()">Confirmar Tipo de Vehículo</button>
+<button class="btn-primary-block" onclick="confirmarVehiculoManual()">
+    <span class="material-symbols-outlined">
+    verified
+    </span>
+    Confirmar Tipo de Vehículo
+</button>
 </div>
 </div>
 </section>
@@ -336,7 +341,12 @@ Ingresar manualmente por silueta <i class="fa-solid fa-arrow-right"></i>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn-primary-block" onclick="cerrarModalMatricula()">Entendido, volver a buscar</button>
+<button type="button" class="btn-primary-block" onclick="cerrarModalMatricula()">
+    <span class="material-symbols-outlined">
+    verified
+    </span>
+    Entendido, volver a buscar
+</button>
 </div>
 </div>
 </div>
