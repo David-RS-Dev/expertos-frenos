@@ -148,7 +148,7 @@ function confirmarVehiculoManual() {
     const customName = document.getElementById("custom-car-name").value.trim();
     
     if (!cotizacionCliente.tipoVehiculo) {
-        alert("Por favor, selecciona una de las siluetas visuales para calcular tu tarifa.");
+        alert("Por favor, selecciona la silueta que corresponda a tu vehículo.");
         return;
     }
 
